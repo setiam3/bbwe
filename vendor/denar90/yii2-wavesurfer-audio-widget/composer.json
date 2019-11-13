@@ -1,0 +1,23 @@
+{
+    "name": "denar90/yii2-wavesurfer-audio-widget",
+    "description": "Wavesurfer audio widget for yii2.",
+    "keywords": ["yii2", "extension", "widget", "audio", "wavesurfer", "jquery"],
+    "homepage": "https://github.com/denar90/yii2-sortable-widget",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Denysov",
+            "email": "denysov.artem@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "npm-asset/wavesurfer.js": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "denar90\\waveSurferAudio\\": ""
+        }
+    }
+}

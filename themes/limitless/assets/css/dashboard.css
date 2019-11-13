@@ -1,0 +1,5 @@
+.content-wrapper {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 35px;
+}

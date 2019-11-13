@@ -1,0 +1,11 @@
+.content-wrapper {
+    background-color: #DEDEDE;
+}
+
+#chat-wrapper {
+    width: 599px;
+}
+
+.chat-content {
+    margin-left: 66px;
+}

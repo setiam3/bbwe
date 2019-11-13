@@ -1,0 +1,15 @@
+
+#fb4bae //button
+#131313 //searchbar
+.active{
+	background:#3c3c3c;
+}
+.inactive{
+	background-color: #2f2f2f;
+}
+.header{
+	background-color: #212121;
+}
+.message-area{
+	background-color: #dedede;
+}

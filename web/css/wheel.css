@@ -1,0 +1,200 @@
+.radialnav {
+  position: fixed;
+  bottom: 6%;
+  right: 0;
+  left: 0;
+  display: block;
+  width: 26em;
+  font: 500 14px/14px arial normal;
+  margin:0 auto;
+  height: 4em;
+  z-index: 3;
+}
+.radialnav.active{
+  height: 24em;
+}
+.radialnav .ellipsis {
+  cursor: pointer;
+  position: absolute;
+  right: 40%;
+  bottom: -4px;
+  z-index: 4;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.44);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.ellipsis2, .ellipsis3, .ellipsis4 {
+  position: absolute;
+  right: 40%;
+  bottom: -4px;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background: #3db9bd; 
+  background: -webkit-linear-gradient(150deg, #dd4182, #3db9bd); 
+  background: linear-gradient(150deg, #dd4182, #3db9bd); 
+  color: white;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: none;
+}
+.radialnav .ellipsis i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -7px 0 0 -7px;
+  cursor: pointer;
+}
+.radialnav .ellipsis:active, {
+  background: -webkit-linear-gradient(150deg, #dd4182, #3db9bd); 
+  background: linear-gradient(150deg, #dd4182, #3db9bd);
+}
+.radialnav a {
+  color: white;
+  text-decoration: none;
+}
+.radialnav.active .ellipsis {
+  background: -webkit-linear-gradient(150deg, #dd4182, #3db9bd); 
+  background: linear-gradient(150deg, #dd4182, #3db9bd);
+}
+
+.radialnav.active .ellipsis2 {
+  transform: scale(1.5);
+  opacity: 0.5;
+}
+
+.radialnav.active .ellipsis3 {
+  transform: scale(1.9);
+  opacity: 0.3;
+}
+.radialnav.active .ellipsis4 {
+  transform: scale(2.3);
+  opacity: 0.3;
+}
+
+.radialnav.active .menu {
+  pointer-events: auto;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.radialnav .button {
+    width: 33%;
+    height: 55%;
+    position: absolute;
+    bottom: -20px;
+    z-index: 999;
+    background: transparent;
+    display: none;
+}
+.menu {
+  position: absolute;
+  padding:0;
+  top: 50%;
+  right: 0;left: 0;margin:0 auto;
+  z-index: 0;
+  width: 350px;
+  height: 305px;
+  -webkit-transform: scale(0.1);
+  -ms-transform: scale(0.1);
+  -moz-transform: scale(0.1);
+  transform: scale(0.1);
+  pointer-events: none;
+  -webkit-transition: all .15s ease;
+  -moz-transition: all .15s ease;
+  transition: all .15s ease;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.menu > li {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  font-size: 1.5em;
+  width: 9.1em;
+  height: 7.8em;
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  overflow: hidden;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  transition: all 0.3s ease;
+}
+.menu > li a {
+  position: absolute;
+  bottom: -7.7em;
+  right: -7.6em;
+  display: block;
+  height: 15.6em;
+  width: 15.6em;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  padding-top: 0em;
+  text-align: center;
+  font-size: 1.18em;
+  -webkit-transform: skew(-50deg) rotate(-72deg) scale(1);
+  -ms-transform: skew(-50deg) rotate(-72deg) scale(1);
+  -moz-transform: skew(-50deg) rotate(-72deg) scale(1);
+  transform: skew(-50deg) rotate(-72deg) scale(1);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: opacity 0.3s, color 0.3s;
+  -moz-transition: opacity 0.3s, color 0.3s;
+  transition: opacity 0.3s, color 0.3s;
+  background-color: black;
+   border-top: 1px solid #4d4d4d;
+}
+.items-icon{
+  width: 3em;
+}
+a:hover img:not(.radialnav){
+  text-decoration: none;
+}
+
+.maskwheel{
+  position: fixed;
+    width: 26.5em;
+    height: 60px;
+    bottom: 0em;
+    background: black;
+    left: 0;
+    z-index: 1;
+    right: 0;
+    margin: 0 auto;
+     border-bottom-left-radius: 25px;
+     border-bottom-right-radius: 25px;
+  display: none;
+}
+.menu > li a img {
+  padding: 11px;
+  opacity: 0.6;
+}
+.menu > li.center0 a img {
+  opacity: 1;
+}
+@media (max-width: 575.98px) {
+  
+}
+@media (max-width: 414px) {
+  
+}
+@media screen and (max-width: 768px) {
+  .radialnav, .maskwheel{
+    right: 0 !important;
+  }
+} 
+@media screen and (min-width: 1224px) {
+  
+}
