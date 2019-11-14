@@ -140,6 +140,19 @@ class SiteController extends Controller
         $posts=MemberPost::findAll(['idmember'=>1]);
         return $this->render('blogpages',['posts'=>$posts]);
     }
+    public function actionTolower(){
+        $path = realpath(Yii::$app->basePath.'/web/images/flag');
+        //print_r($path);die;
+        $di = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::LEAVES_ONLY
+        );
+        foreach($di as $name => $fio) {
+            $newname = $fio->getPath() . DIRECTORY_SEPARATOR . strtolower( $fio->getFilename() );
+            //echo $newname, "\r\n";
+            rename($name, $newname);
+        }
+    }
     public function actionProfile(){
         $id=Yii::$app->user->id;
         $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',$id])->orderBy('datetime desc')->limit(2)->all();
