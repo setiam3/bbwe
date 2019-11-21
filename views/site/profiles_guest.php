@@ -23,15 +23,25 @@ $contents='';
         <div class="profile-skill container center">
         <?=(!empty($model->skill))?$model->skill:'';?>
           <div class="list-inline">
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-breifcase.png" class="img-fluid" style="width:3rem"></a>
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-mailbox.png" class="img-fluid" style="width:3rem"></a>
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-megaphone.png" class="img-fluid" style="width:3rem"></a>
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-world.png" class="img-fluid" style="width:3rem"></a>
-            <!-- <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-chats.png" class="img-fluid" style="width:3rem"></a> -->
-            <a href="#" class="flag-icon-right m-0">
-                <?=Flags::widget(['code'=>$model->flags->flag,'width'=>'30px']);?>
-            </a>
-            
+            <ul class="list-inline">
+              <li class="list-item">
+              <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-breifcase.png" class="img-fluid" style="width:3rem"></a>
+              </li>
+              <li class="list-item">
+              <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-mailbox.png" class="img-fluid" style="width:3rem"></a>
+              </li>
+              <li class="list-item">
+              <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-megaphone.png" class="img-fluid" style="width:3rem"></a>
+              </li>
+              <li class="list-item">
+              <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-world.png" class="img-fluid" style="width:3rem"></a>
+              <!-- <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/icon-chats.png" class="img-fluid" style="width:3rem"></a> -->
+              </li>
+              
+              <a href="#" class="flag-icon-right m-0">
+                  <?=Flags::widget(['code'=>$model->flags->flag,'width'=>'30px']);?>
+              </a>
+            </ul>
           </div>
           <div class="list-inline">
           <!-- <div class="" style="margin:0 10px 0 10px;">Top Skill</div>  -->

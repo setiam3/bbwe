@@ -141,7 +141,7 @@ class SiteController extends Controller
         return $this->render('blogpages',['posts'=>$posts]);
     }
     public function actionTolower(){
-        $path = realpath(Yii::$app->basePath.'/web/images/flag');
+        $path = realpath(Yii::$app->basePath.'/web/images');
         //print_r($path);die;
         $di = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS),
@@ -162,6 +162,9 @@ class SiteController extends Controller
         $id=Yii::$app->user->id;
         $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',$id])->orderBy('datetime desc')->limit(3)->all();
         return $this->render('profiles_guest',['model'=>$this->findModel($id,'Member'),'member'=>$member]);
+    }
+    public function actionProfilepageguestviewer(){
+        return $this->render('profilepageguestviewer');
     }
     public function actionUpdateprofile(){
         $profile=$this->findModel(Yii::$app->user->id,'Member');

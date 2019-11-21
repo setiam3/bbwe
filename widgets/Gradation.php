@@ -6,7 +6,7 @@ use yii\helpers\Html;
 class Gradation extends Widget{
 	public $direction;
 	public $color1;
-	public $color2;
+	public $color2,$width=1;
     public $size=20;
     public $type;//text / border / background
 
@@ -34,15 +34,7 @@ class Gradation extends Widget{
         if($this->type=='text'){
             return 'style="-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;background-image: linear-gradient('.$this->direction.'deg,'.$this->color1.','.$this->color2.');background-size:'.$this->size.'%;"';
         }elseif($this->type=='border'){
-            return '
-  border-top: 1px solid '.$this->color1.' !important; 
-  border-left: none !important;border-right: none !important;
-  border-bottom: 1px solid '.$this->color2.' !important; 
-  background-image: linear-gradient('.$this->color1.','.$this->color2.'), linear-gradient('.$this->color1.','.$this->color2.'); 
-  -moz-background-size: 1px 100%; 
-  background-size: 1px 100%; 
-  background-position: 0 0, 100% 0; 
-  background-repeat: no-repeat;';
+            return 'border-top: '.$this->width.'px solid '.$this->color1.' !important;border-left: none !important;border-right: none !important;border-bottom: '.$this->width.'px solid '.$this->color2.' !important;background-image: linear-gradient('.$this->color1.','.$this->color2.'), linear-gradient('.$this->color1.','.$this->color2.');-moz-background-size: '.$this->width.'px 100%;background-size: '.$this->width.'px 100%;background-position: 0 0, 100% 0;background-repeat: no-repeat;';
         }else{
             return 'style="background-image:linear-gradient('.$this->direction.'deg,'.$this->color1.','.$this->color2.')"';
         }
