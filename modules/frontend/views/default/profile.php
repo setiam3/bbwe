@@ -1,7 +1,8 @@
 <?php 
 use  yii\web\View;
 use app\widgets\Flags;
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 $js=<<<js
   $('main').addClass('long-decorate');
 js;
@@ -9,31 +10,35 @@ $this->registerJS($js,View::POS_READY,'adddecorate');
 ?>
 <div class="row">
     <div class="page-title">
-      <img class="profile-pic img-fluid" src="<?=(isset($model->photo))?$model->photo:$this->theme->baseUrl.'/images/icon-profile.svg'?>" style="width:22vmax;height: 22vmax;background:#000;padding: 1vmax;" alt="Card image cap">
+      <img class="profile-pic img-fluid" src="<?=(isset($model->photo))?Url::home().$model->photo:Url::home().'/images/icon-profile.svg'?>" style="width:22vmax;height: 22vmax;background:#000;padding: 1vmax;" alt="Card image cap">
    </div>
   </div>
   <div class="row">
     <div class="col-sm-5" >
       <fieldset class="profile">
         <legend class="profile-name"><?=$model->name?></legend>
-        <div class="profile-skill container">
+        <div class="profile-skill container center">
+        <?=(!empty($model->skill))?$model->skill:'';?>
           <div class="list-inline">
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/directory-tech-icon.png"></a>
-            <a href="#" class="nav-link"><img src="<?=$this->theme->baseUrl;?>/images/directory-contact-icon.png"></a>
-            Ruby Python Developer
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-breifcase.png" style="width:3rem"></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-mailbox.png" style="width:3rem"></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-world.png" style="width:3rem"></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-megaphone.png" style="width:3rem"></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-chats.png" style="width:3rem"></a>
           </div>
-        <div class="list-inline">
-        <div class="" style="margin:0 10px 0 10px;">Top Skill</div> 
-          <a href="#" ><div class="img-circle"></div></a>
-          <a href="#" class="flag-icon-right m-0">
-              <?=Flags::widget(['code'=>$model->flags->flag,'width'=>'30px']);?>
+        </div>
+      </fieldset>
+      <fieldset class="profile">
+        <legend class="profile-name">Advertisement</legend>
+          <a href='#'>
+            <?php echo Html::img(Url::home().'images/adv.png');?>
           </a>
-       </div>
-       </div>
-
-        <div class="row">
-        
-      </div>
+          <div class="list-inline">
+            <a href="#" class="nav-link center"><?php echo Html::img(Url::home().'images/adv.png');?></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-mailbox.png" style="width:3rem"></a>
+            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/adv.jpg" style="width:3rem"></a>
+            
+          </div>
       </fieldset>
   
      <div class="profile-media">
@@ -50,7 +55,7 @@ $this->registerJS($js,View::POS_READY,'adddecorate');
                 <div class="flagcon">
                   <?=Flags::widget(['code'=>$row->flags->flag]);?>
                 </div>
-                <img class="profile-pic img-fluid border" src="<?=(isset($row->photo))?$row->photo:$this->theme->baseUrl.'/images/icon-profile.svg'?>" style="width:20vmax;height: 20vmax;background:#000;padding: 1vmax;" alt="Card image cap">
+                <img class="profile-pic img-fluid border" src="<?=(isset($row->photo))?Url::home().$row->photo:Url::home().'/images/icon-profile.svg'?>" style="width:20vmax;height: 20vmax;background:#000;padding: 1vmax;" alt="Card image cap">
               </div>
             <div class="card-body">
             <h6 class="card-title">

@@ -20,7 +20,7 @@ class Gradation extends Widget{
         if($this->color2===null){
             $this->color2= '#cc0379';
         }else{
-            $this->color2= $this->color1;
+            $this->color2= $this->color2;
         }
         if($this->type===null){
             $this->type='background';
@@ -28,7 +28,6 @@ class Gradation extends Widget{
             $this->type=$this->type;
             $this->size=$this->size;
         }
-        //linear-gradient(black,black), radial-gradient(circle at center left, #dd4182,#3db9bd);
 	}
 	public function run(){
         if($this->type=='text'){
