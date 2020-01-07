@@ -43,9 +43,9 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
             [['datetime', 'latest_login'], 'safe'],
             [['country', 'name', 'email', 'password', 'profession', 'username'], 'required'],
             [['deactivated_account'], 'integer'],
-            [['auth_key','skill'], 'string'],
+            [['auth_key','skill','about'], 'string'],
             ['email', 'email'],
-            [['country', 'name', 'email', 'password', 'profession', 'username', 'referral', 'password_reset_token', 'photo'], 'string', 'max' => 255],
+            [['country', 'name', 'email', 'password', 'profession', 'username', 'referral', 'password_reset_token', 'photo','cv'], 'string', 'max' => 255],
         ];
     }
 
@@ -70,6 +70,8 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
             'password_reset_token' => 'Password Reset Token',
             'photo' => 'Photo',
             'skill' => 'Skill',
+            'about'=>'About',
+            'cv'=>'CV'
         ];
     }
 
@@ -150,6 +152,10 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
        public function getMemberActivities() 
        { 
            return $this->hasMany(MemberActivity::className(), ['idmember' => 'id']); 
+       } 
+       public function getMemberJobPackets() 
+       { 
+           return $this->hasMany(MemberJobPacket::className(), ['member_id' => 'id']); 
        } 
        public function getMemberPodcastBlogs() 
        { 

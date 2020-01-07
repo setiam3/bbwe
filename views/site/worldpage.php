@@ -8,7 +8,7 @@
         <div class="input-group mb-0 rounded-pill">
           <input type="text" class="border-0 rounded-pill m-6" >
           <div class="input-group-append">
-            <span class="center">
+            <span class="center" style="display: block;">
               <button class="btn pink rounded-pill" style="color: #fff;">
               Search
             </button>

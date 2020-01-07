@@ -9,7 +9,7 @@ $js=<<<js
   if($('main').find('img').hasClass('logos')){
     $('.navbar-brand').addClass('d-none');
   }
-  $(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
+  //$(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
 
   CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
   CKEDITOR.config.allowedContent=true;
@@ -67,7 +67,7 @@ $this->registerJS($js,View::POS_END,'adddecorate');
             <form id="logout" action="<?=Yii::$app->homeUrl?>site/logout" method="post">
               <?=yii\helpers\Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken)?>
             <li class="nav-item">
-              <button type="submit" class="nav-link"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-signin.png" style="width: 50px;"></button>
+              <button type="submit" class="nav-link"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-signin.png" style="width: 100%;"></button>
             </li>
           </form>
             <?php } ?>

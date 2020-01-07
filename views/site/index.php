@@ -96,8 +96,8 @@ information through cookies: Cookie policy.
 At any time you can opt-out if you wish.
 </p>
 <div class="container center m-3">
-  <button class="btn btn-primary col-3" data-dismiss="modal">ACCEPT</button>
-  <button class="btn btn-primary col-3" data-dismiss="modal">REJECT</button>
+  <button class="btn btn-primary col-3 m-2" data-dismiss="modal">ACCEPT</button>
+  <button class="btn btn-primary col-3 m-2" data-dismiss="modal">REJECT</button>
 </div>
 </div>
 </div>

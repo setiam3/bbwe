@@ -26,7 +26,7 @@ class Wheel extends Widget{
         $items=WheelMenu::find()->where(['status'=>1])->orderBy(new Expression('rand()'))->limit(5)->all();
         $output='';
         foreach ($items as $value) {
-            $links='<a href="'.$value->url.'"><img class="items-icon" src="'.Yii::$app->homeUrl.$value->icons.'"><div style="font-family:exo-regular;font-size:0.7rem;">'.$value->label.'</div></a>';
+            $links='<a href="'.Yii::$app->homeUrl.$value->url.'"><img class="items-icon" src="'.Yii::$app->homeUrl.$value->icons.'"><div style="font-family:exo-regular;font-size:0.7rem;">'.$value->label.'</div></a>';
             $separator='<a><img src="'.Yii::$app->homeUrl.'images/separator.png" style="transform: rotateZ(87deg);padding: 58px;"></a>';
             $output.='<li>'.$links.'</li>'.'<li>'.$separator.'</li>';
         }

@@ -32,7 +32,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-builder": "@dev",
         "beastbytes/yii2-wizard": "dev-master",
-        "rbtphp/yii2-ffmpeg": "*"
+        "rbtphp/yii2-ffmpeg": "*",
+        "tpmanc/yii2-imagick": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

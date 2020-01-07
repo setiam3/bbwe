@@ -8,9 +8,9 @@ $js=<<<js
   if($('main').find('img').hasClass('logos')){
     $('.navbar-brand').addClass('d-none');
   }
-  $(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
-  CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
-  CKEDITOR.config.allowedContent=true;
+  //$(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
+  // CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
+  // CKEDITOR.config.allowedContent=true;
 js;
 $this->registerJS($js,View::POS_READY,'rm');
 // $this->registerJsFile($this->theme->baseUrl.'/js/src/popover.js', ['position' => yii\web\View::POS_END,'depends'=>['yii\web\JqueryAsset']]);

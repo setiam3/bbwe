@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\base\Widget;
 use app\widgets\Flags;
+use yii\helpers\Url;
 use app\widgets\Wheel;
 $this->registerJSVar('baseUrl',$this->theme->baseUrl,View::POS_END);
 ?>
@@ -26,7 +27,7 @@ $this->registerJSVar('baseUrl',$this->theme->baseUrl,View::POS_END);
               <div class="flagcon">
                 <?=Flags::widget(['code'=>$value->flags->flag]);?>
               </div>
-              <img class="profile-pic img-fluid" src="<?=(isset($value->photo))?$value->photo:$this->theme->baseUrl.'/images/icon-profile.svg'?>" alt="Card image cap">
+              <img class="profile-pic img-fluid" src="<?=(isset($value->photo))?Url::home(true).$value->photo:$this->theme->baseUrl.'/images/icon-profile.svg'?>" alt="Card image cap">
             </div>
           <div class="card-body">
           <h6 class="card-title">

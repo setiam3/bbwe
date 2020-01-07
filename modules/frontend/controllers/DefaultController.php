@@ -35,6 +35,29 @@ class DefaultController extends Controller
         }
         return $this->render('webaudio');
     }
+    public function number_format($number){
+        return number_format($number,2,",",".");
+    }
+    public function money($number){
+        setlocale(LC_MONETARY, 'en_US');
+        return money_format('%(#10n', $number);
+    }
+    public function genPdfThumbnail($source, $target){
+
+        // if (!extension_loaded('imagick')){
+        //     echo 'imagick not installed';
+        // }
+        $source = Yii::$app->basePath.$source;
+        //echo Yii::$app->basePath.$source;
+        $target = dirname($source).DIRECTORY_SEPARATOR.$target;
+        $im     = new \Imagick($source."[0]"); // 0-first page, 1-second page
+        $im->setImageColorspace(255); // prevent image colors from inverting
+        $im->setimageformat("jpeg");
+        $im->thumbnailimage(160, 120); // width and height
+        $im->writeimage($target);
+        $im->clear();
+        $im->destroy();
+    }
     public function actionBlogupload()
     {
         $model = new MemberVideo();
@@ -116,10 +139,50 @@ class DefaultController extends Controller
     {
         return $this->render('bloglist');
     }
-    public function actionProfile($id)
+    public function actionProfile()
     {
+        $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',Yii::$app->user->id])->orderBy('datetime desc')->limit(2)->all();
+        return $this->render('profile',['model'=>$this->findModel(Yii::$app->user->id,'Member'),'member'=>$member]);
+    }
+    public function actionProfilelisting($id){
         $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',$id])->orderBy('datetime desc')->limit(2)->all();
-        return $this->render('profile',['model'=>$this->findModel($id,'Member'),'member'=>$member]);
+        return $this->render('profile-joblisting',['model'=>$this->findModel($id,'Member'),'member'=>$member]);
+    }
+    public function actionUpdateprofile(){
+        $profile=$this->findModel(Yii::$app->user->id,'Member');
+        if($profile->load(Yii::$app->request->post())){
+            $profile->name=Yii::$app->request->post('Member')['name'];
+            $profile->skill=Yii::$app->request->post('Member')['skill'];
+            $profile->about=Yii::$app->request->post('Member')['about'];
+            $cv=UploadedFile::getInstance($profile,'cv');
+            $profile->cv=Yii::$app->request->BaseUrl.'/uploads/files/'.$cv->name;
+            if($profile->save()){
+                $cv->saveAs(realpath(Yii::$app->basePath).'/web/uploads/files/'.$cv->name);
+                Yii::$app->session->setFlash('success', 'success update profile');
+            }else{
+                Yii::$app->session->setFlash('error', 'error update profile');
+            }
+        }
+        $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',Yii::$app->user->id])->orderBy('datetime desc')->limit(2)->all();
+        return $this->render('updateprofile',['model'=>$profile,'member'=>$member]);
+    }
+    public function actionDeleteprofilecv(){
+        //delete by ajax
+        if(Yii::$app->request->post() && Yii::$app->user->id==$_POST['id']){
+            $profile=$this->findModel($_POST['id'],'Member');
+            $fullpath=realpath(Yii::$app->basePath).$profile->cv;
+            if(file_exists($fullpath)){
+                if (!unlink($fullpath)) {  
+                    echo ("$profile->cv cannot be deleted due to an error");  
+                }else{
+                    $profile->cv='';
+                    $profile->save();
+                    echo ("$profile->cv has been deleted");  
+                }
+            }else{
+                echo "files not exist";
+            }
+        }
     }
     public function actionGb()
     {

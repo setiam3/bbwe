@@ -183,11 +183,23 @@ a img:hover{
 -o-background-size: cover;
 background-size: cover;
 }
+.packet_head{
+  font-size: x-large;
+}
+.packet_price{
+  font-size: xxx-large;
+}
+.users_apply{
+  border-bottom: 1px solid #eee;
+}
+.users_apply:last-child{
+  border-bottom:none;
+}
 .invitation{
   padding:2em;
   background: white;
   color: black;
-  max-width: 50%;
+  max-width: 60%;
 }
 .invitation input{
   background:#eee;
@@ -210,6 +222,11 @@ background-size: cover;
 }
 .btn-radius{
   border-radius: 50px;
+}
+#form-profile .form-control{
+  border-radius: 4px;
+  color: black;
+  background: white;
 }
 .modal-dialog{
   position: fixed;
@@ -256,7 +273,7 @@ background-size: cover;
 .detaile {
     overflow-y: scroll;
     overflow-x: hidden;
-    max-height: 80vh;
+    max-height: 90vh;
     padding-bottom: 5%;
 }
 .scroll-x{
@@ -646,7 +663,9 @@ footer{
 @media screen and (min-width: 1224px) {
   
 }
-
+.border-0{
+  border:none;
+}
 .help-block{
   color: red;
 }

@@ -19,7 +19,7 @@ $this->registerJs($script);
           <div class="card-body">
             <h5 class="card-title rounded-top">Free Access</h5>
             <div class="card-text pt-5 m-4">It is free to access our homepage blog. You will be able to see members’ blogs, and podcasts on the homepage blog</div>
-            <?=Html::a('Register',Url::to('adv/registeradv'),['class'=>'btn btn-primary rounded-lg'])?>
+            <?=Html::a('Register',Url::to('registeradv'),['class'=>'btn btn-primary rounded-lg'])?>
           </div>
     </div>
   </div>

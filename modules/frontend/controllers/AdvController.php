@@ -73,6 +73,13 @@ class AdvController extends \yii\web\Controller
 	    	$video->saveAs(realpath(Yii::$app->basePath).'/web/video/'.$video->name);
 	    }
     }
+    public function actionUploadcv(){
+    	if(Yii::$app->request->post()){
+	    	\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+	    	$pdf=UploadedFile::getInstanceByName('Member[cv]');
+	    	$pdf->saveAs(realpath(Yii::$app->basePath).'/web/uploads/files/'.$pdf->name);
+	    }
+    }
     public function base64toFiles($base64,$output_file){
         $file = fopen($output_file, "wb");
         $data = explode(',', $base64);

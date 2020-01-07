@@ -14,7 +14,7 @@ $this->registerCss("main{padding-top:0;}");
 ?>
 <?=app\widgets\Alert::widget();?>
 <div class="invitation container bg-ornamen">
-  <div class="center">
+  <div class="center" style="display: block;">
   <br>
       <div class="center"><img src="<?=Yii::$app->homeUrl?>images/icon-invite.png" class="img-fluid" style="width: 100px;"></div>
       <br>
@@ -26,7 +26,7 @@ $this->registerCss("main{padding-top:0;}");
         <?= $form->field($model, 'email1')->label(false)->textInput(['class'=>'rounded col-sm-6','placeholder'=>'Email Address 1']); ?>
         <?= $form->field($model, 'email2')->label(false)->textInput(['class'=>'rounded col-sm-6','placeholder'=>'Email Address 2']); ?>
         <?= $form->field($model, 'email3')->label(false)->textInput(['class'=>'rounded col-sm-6','placeholder'=>'Email Address 3']); ?>
-        <div class="container col-sm-6">
+        <div class="container col-sm-7">
             <?= Html::submitButton('Send Invitation', ['class' => 'btn btn-primary pink btn-block font-weight-medium auth-form-btn']) ?>
         </div>
     <?php ActiveForm::end(); ?>
