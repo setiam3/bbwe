@@ -31,12 +31,12 @@ $this->registerJS($js,View::POS_READY,'adddecorate');
         <legend class="profile-name"><?=$model->name?></legend>
         <div class="profile-skill container center">
         <?=(!empty($model->skill))?$model->skill:'';?>
-          <div class="list-inline">
-            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-breifcase.png" style="width:3rem"></a>
-            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-mailbox.png" style="width:3rem"></a>
-            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-world.png" style="width:3rem"></a>
-            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-megaphone.png" style="width:3rem"></a>
-            <a href="#" class="nav-link center"><img src="<?=$this->theme->baseUrl;?>/images/icon-chats.png" style="width:3rem"></a>
+          <div class=" row">
+            <?php foreach ($membermenu as $key => $value) {
+              $link=Html::a(Html::img(Url::home(true).$value->icons,['class'=>'img-fluid']),Yii::$app->homeUrl.$value->url,['class'=>'nav-link center']);
+              echo Html::tag('div',$link,['class'=>'col']);
+            }
+            ?>
           </div>
         </div>
       </fieldset>
@@ -115,10 +115,10 @@ $this->registerJS($js,View::POS_READY,'adddecorate');
             </button>
           <div class="toast-body">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col">
                 <?php echo Html::img(Url::home(true).'images/avatars.jpg',['class'=>'img-fluid'])?>
               </div>
-              <div class="col">
+              <div class="col-sm-9">
                 <div class="head"><strong>Owner</strong></div>
                 <div class="head"><strong>Category</strong></div>
                 <div class="head">type job</div>
@@ -165,10 +165,10 @@ $this->registerJS($js,View::POS_READY,'adddecorate');
             </button>
           <div class="toast-body">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col">
                 <?php echo Html::img(Url::home(true).'images/avatars.jpg',['class'=>'img-fluid'])?>
               </div>
-              <div class="col">
+              <div class="col-sm-9">
                 <div class="head"><strong>Owner</strong></div>
                 <div class="head"><strong>Category</strong></div>
                 <div class="head">type job</div>

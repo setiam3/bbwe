@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
+use app\widgets\Alert;
 $js=<<<js
   $('main').addClass('long-decorate');
 js;
@@ -16,8 +17,13 @@ $js2=<<<javascript
       type:'POST',
       data:{id:data},
       success: function(data) {
-        alert(data);
-        $('.imgcv').remove();
+        var obj=JSON.parse(data);
+        if(obj.success==true){
+          alert(obj.message);
+          $('.imgcv').remove();
+        }else{
+          alert(obj.message);
+        }
       }
       });
   }
@@ -25,6 +31,7 @@ javascript;
 $this->registerJS($js2,View::POS_END,'function');
 ?>
 <div class="container">
+  <?=Alert::widget();?>
   <a href="profile"><i class="fa fa-arrow-left"></i> Profile</a>
   <div id="form-profile" class="container">
           <?php $form= ActiveForm::begin(); ?>
@@ -43,15 +50,17 @@ $this->registerJS($js2,View::POS_END,'function');
               echo $form->field($model,'about')->textarea(['rows'=>4,'cols'=>4])->label('About me');
               if(!empty($model->cv)){
                 $ext=pathinfo(Yii::$app->basePath.$model->cv);
-                //print_r($ext);
+                $image=['jpg','jpeg','png'];
+                //if(!in_array(strtolower($ext['extension']),$image)){
                 if($ext['extension']=='pdf'){
                   $this->context->genPdfThumbnail($model->cv,$ext['basename'].'.jpeg');
-                  $preview=$model->cv.'.jpeg';
+                  $preview=Yii::getAlias('@urlUpload').$model->cv.'.jpeg';
+                }elseif(in_array(strtolower($ext['extension']),$image)){
+                  $preview=Yii::getAlias('@urlUpload').$model->cv;
                 }else{
-                  $preview=$model->cv;
+                  $preview='';
                 }
-                
-                echo Html::a(Html::img($preview,['class'=>'imgcv img-fluid','style'=>'max-width:28vh;']).Html::a('<i class="fa fa-minus"></i>','#',['class'=>'imgcv','style'=>'padding: 5px 10px;border: 3px;border-radius: 50%;background: #cc0379;','onclick'=>'javascript:deleteCv("deleteprofilecv","'.$model->id.'")']),$model->cv);
+                echo Html::a(Html::img($preview,['class'=>'imgcv img-fluid','style'=>'max-width:28vh;']).Html::a('<i class="fa fa-minus"></i>','#',['class'=>'imgcv','style'=>'padding: 5px 10px;border: 3px;border-radius: 50%;background: #cc0379;','onclick'=>'javascript:deleteCv("deleteprofilecv","'.$model->id.'")']),Yii::getAlias('@urlUpload').$model->cv,['target'=>'_blank']);
               }
               echo $form->field($model,'cv')->fileInput()->label('CV');
               ?>

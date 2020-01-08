@@ -3,14 +3,15 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\web\View;
 use app\assets\AppAsset;
+use yii\helpers\Url;
+use app\widgets\Gradation;
 AppAsset::register($this);
 $js=<<<js
-  //$("[data-toggle='popover']").popover();
   if($('main').find('img').hasClass('logos')){
     $('.navbar-brand').addClass('d-none');
   }
-  //$(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
-
+  $(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
+  setTimeout(function(){ $('.alert').remove(); }, 3000);
   CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
   CKEDITOR.config.allowedContent=true;
 js;
@@ -32,51 +33,7 @@ $this->registerJS($js,View::POS_END,'adddecorate');
 </head>
 <body>
 <?php $this->beginBody(); ?>
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="col-sm-3">
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" style="display: block;">
-          <img src="<?php echo $this->theme->baseUrl; ?>/images/icon-burger.png" style="width:;">
-        <!-- <span class="navbar-toggler-icon"></span> -->
-        </button>
-      </div>
-      <div class="col-sm-3">
-        <a class="navbar-brand " href="<?=Yii::$app->getHomeUrl()?>site"><img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid logo" style="width:55vw;"></a>
-      </div>
-      <div class="col-sm-6">
-      <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-        
-      <ul class="list-inline navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="<?=Yii::$app->getHomeUrl()?>site"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-home.png" style="width: ;"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-info.png" style="width: ;"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-message.png" style="width: ;"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-browser.png" style="width: ;"></a>
-            </li>
-            <?php if(Yii::$app->user->isGuest){?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?=Yii::$app->getHomeUrl().'site/login'?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-signin.png" style="width: 50px;"></a>
-            </li>
-            <?php }else{ ?>
-            <form id="logout" action="<?=Yii::$app->homeUrl?>site/logout" method="post">
-              <?=yii\helpers\Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken)?>
-            <li class="nav-item">
-              <button type="submit" class="nav-link"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-signin.png" style="width: 100%;"></button>
-            </li>
-          </form>
-            <?php } ?>
-          </ul>
-      </div>
-    </div>
-    
-  </nav>
-</header>
+<?php include('header.php');?>
 <main role="main">
 <div class="container">
   <?php echo $content;?>
@@ -86,7 +43,7 @@ $this->registerJS($js,View::POS_END,'adddecorate');
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <span class="copyright">© Copyright 2019 Soldiers Of The Arts. All Rights Reserved.</span>
+        <span class="copyright">© Copyright 2020 Soldiers Of The Arts. All Rights Reserved.</span>
         <img src="<?php echo $this->theme->baseUrl; ?>/images/logo-soldierofheart.png">
       </div>
     </div>

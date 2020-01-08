@@ -477,6 +477,9 @@ footer{
   margin-bottom: 20px;
   margin-top:10px;
 }
+.profile-skill.nav-link img{
+  width: 4vw;
+}
 .profile{
   border: solid 1px;
   border-radius: 4px;

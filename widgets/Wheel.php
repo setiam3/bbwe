@@ -6,6 +6,7 @@ use yii\base\Widget;
 use yii\helpers\Html;
 use app\models\WheelMenu;
 use yii\db\Expression;
+use yii\helpers\Url;
 
 class Wheel extends Widget{
     public $items;
@@ -20,7 +21,7 @@ class Wheel extends Widget{
         }else{
             $this->style=$this->style;
         }
-        $this->getView()->registerJsVar('baseUrl',Yii::$app->homeUrl);
+        $this->getView()->registerJsVar('baseUrl',Url::home(true));
     }
     public function items(){
         $items=WheelMenu::find()->where(['status'=>1])->orderBy(new Expression('rand()'))->limit(5)->all();
@@ -35,7 +36,7 @@ class Wheel extends Widget{
     public function run(){
         return '
             <nav class="radialnav" style="'.$this->style.'">
-                <span class="ellipsis"><img src="'.Yii::$app->homeUrl.'/images/directory-show-menu.png" class="img-fluid"></span>
+                <span class="ellipsis"><img src="'.Url::home(true).'/images/directory-show-menu.png" class="img-fluid"></span>
                 <a href="#" class="ellipsis2"></a>
                 <a href="#" class="ellipsis3"></a>
                 <a href="#" class="ellipsis4"></a>

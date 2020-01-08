@@ -12,6 +12,7 @@ use app\models\Member;
 use app\models\MemberVideo;
 use app\models\MemberPodcast;
 use app\models\MemberPost;
+use app\models\MemberMenu;
 use app\models\Contact;
 use yii\web\UploadedFile;
 
@@ -43,17 +44,13 @@ class DefaultController extends Controller
         return money_format('%(#10n', $number);
     }
     public function genPdfThumbnail($source, $target){
-
-        // if (!extension_loaded('imagick')){
-        //     echo 'imagick not installed';
-        // }
         $source = Yii::$app->basePath.$source;
-        //echo Yii::$app->basePath.$source;
+        print_r(Yii::alias('@web'));die;
         $target = dirname($source).DIRECTORY_SEPARATOR.$target;
         $im     = new \Imagick($source."[0]"); // 0-first page, 1-second page
         $im->setImageColorspace(255); // prevent image colors from inverting
         $im->setimageformat("jpeg");
-        $im->thumbnailimage(160, 120); // width and height
+        $im->thumbnailimage(160, 160); // width and height
         $im->writeimage($target);
         $im->clear();
         $im->destroy();
@@ -141,8 +138,13 @@ class DefaultController extends Controller
     }
     public function actionProfile()
     {
-        $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',Yii::$app->user->id])->orderBy('datetime desc')->limit(2)->all();
-        return $this->render('profile',['model'=>$this->findModel(Yii::$app->user->id,'Member'),'member'=>$member]);
+        if(Yii::$app->user->isGuest){
+            $this->redirect('login');
+        }else{
+            $memberMenu=MemberMenu::findAll(['status'=>1]);
+            $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',Yii::$app->user->id])->orderBy('datetime desc')->limit(2)->all();
+            return $this->render('profile',['membermenu'=>$memberMenu,'model'=>$this->findModel(Yii::$app->user->id,'Member'),'member'=>$member]);
+        }
     }
     public function actionProfilelisting($id){
         $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',$id])->orderBy('datetime desc')->limit(2)->all();
@@ -150,14 +152,21 @@ class DefaultController extends Controller
     }
     public function actionUpdateprofile(){
         $profile=$this->findModel(Yii::$app->user->id,'Member');
+        $old_profile=$profile->cv;
         if($profile->load(Yii::$app->request->post())){
             $profile->name=Yii::$app->request->post('Member')['name'];
             $profile->skill=Yii::$app->request->post('Member')['skill'];
             $profile->about=Yii::$app->request->post('Member')['about'];
             $cv=UploadedFile::getInstance($profile,'cv');
-            $profile->cv=Yii::$app->request->BaseUrl.'/uploads/files/'.$cv->name;
+            if(!empty($cv)){
+                $profile->cv='/'.$cv->name;
+            }else{
+                $profile->cv=$old_profile;
+            }
             if($profile->save()){
-                $cv->saveAs(realpath(Yii::$app->basePath).'/web/uploads/files/'.$cv->name);
+                if(!empty($cv)){
+                    $cv->saveAs(Yii::getAlias('@uploads').$cv->name);
+                }
                 Yii::$app->session->setFlash('success', 'success update profile');
             }else{
                 Yii::$app->session->setFlash('error', 'error update profile');
@@ -170,17 +179,21 @@ class DefaultController extends Controller
         //delete by ajax
         if(Yii::$app->request->post() && Yii::$app->user->id==$_POST['id']){
             $profile=$this->findModel($_POST['id'],'Member');
-            $fullpath=realpath(Yii::$app->basePath).$profile->cv;
+            $fullpath=realpath(Yii::getAlias('@uploads')).$profile->cv;
             if(file_exists($fullpath)){
                 if (!unlink($fullpath)) {  
-                    echo ("$profile->cv cannot be deleted due to an error");  
+                    return json_encode(array('success'=>false,'message'=>$profile->cv." cannot be deleted due to an error"));  
                 }else{
+                    if(pathinfo($fullpath)['extension']=='pdf'){
+                        unlink($fullpath.'.jpeg');
+                    }
+                    return json_encode(array('success'=>true,'message'=>$profile->cv." has been deleted"));
                     $profile->cv='';
                     $profile->save();
-                    echo ("$profile->cv has been deleted");  
+                    
                 }
             }else{
-                echo "files not exist";
+                return json_encode(array('success'=>false,'message'=>$profile->cv." files not exist"));
             }
         }
     }
