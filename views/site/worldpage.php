@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 mt-9 center">
-      <img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid">
+      <img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid logos">
       <p>Connecting to Black Women Worldwide</p>
       <div class="container pt-5">
       <form class="row">

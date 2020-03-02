@@ -15,13 +15,13 @@ use app\widgets\Gradation;
           <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.
           Html::img($this->theme->baseUrl.'/images/icon-burger.png',['class'=>'img-fluid'])
           .'</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" '.Gradation::widget(['direction'=>180]).'>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" '.Gradation::widget(['direction'=>310]).'>
             <a class="dropdown-item" style="font-size: small;border-bottom: 1px solid #eee;color: white;" href="'.Url::to(['login']).'">Sign In <i class="fas fa-sign-in-alt pull-right"></i></a>
             <a class="dropdown-item" style="font-size: small;border-bottom: 1px solid #eee;color: white;" href="'.Url::to(['register']).'">Register <i class="far fa-edit pull-right"></i></a>
           </div></div>';
          $afterLogin='<div class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.Html::img($this->theme->baseUrl.'/images/icon-burger.png',['class'=>'img-fluid']).'</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" '.Gradation::widget(['direction'=>180]).' >
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" '.Gradation::widget(['direction'=>310]).' >
               <div class="center" style="color: white;">
                 <h2>Hello,</h2>
                 <a href="'.Url::to(['profile']).'">

@@ -29,7 +29,7 @@ $this->registerJS($js,View::POS_READY,'rm');
   <title><?= Html::encode($this->title) ?></title>
   <link rel="icon" href="<?=$this->theme->baseUrl?>/images/favicon.ico" type="image/x-icon"/>
   <?php $this->head() ?>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet"> -->
 <script src="<?php echo $this->theme->baseUrl; ?>/js/jquery-latest.min.js"></script>
 </head>
 <body>

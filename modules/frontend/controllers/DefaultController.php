@@ -12,6 +12,7 @@ use app\models\Member;
 use app\models\MemberVideo;
 use app\models\MemberPodcast;
 use app\models\MemberPost;
+use app\models\MemberPostjob;
 use app\models\MemberMenu;
 use app\models\Contact;
 use yii\web\UploadedFile;
@@ -45,7 +46,7 @@ class DefaultController extends Controller
     }
     public function genPdfThumbnail($source, $target){
         $source = Yii::$app->basePath.$source;
-        print_r(Yii::alias('@web'));die;
+        //print_r(Yii::alias('@web'));die;
         $target = dirname($source).DIRECTORY_SEPARATOR.$target;
         $im     = new \Imagick($source."[0]"); // 0-first page, 1-second page
         $im->setImageColorspace(255); // prevent image colors from inverting
@@ -146,6 +147,10 @@ class DefaultController extends Controller
             return $this->render('profile',['membermenu'=>$memberMenu,'model'=>$this->findModel(Yii::$app->user->id,'Member'),'member'=>$member]);
         }
     }
+    public function actionPostjob(){
+        $model=new MemberPostjob();
+        return $this->render('profilepost',['model'=>$model]);
+    }
     public function actionProfilelisting($id){
         $member=Member::find()->where(['deactivated_account'=>0])->andWhere(['!=','id',$id])->orderBy('datetime desc')->limit(2)->all();
         return $this->render('profile-joblisting',['model'=>$this->findModel($id,'Member'),'member'=>$member]);
@@ -190,7 +195,6 @@ class DefaultController extends Controller
                     return json_encode(array('success'=>true,'message'=>$profile->cv." has been deleted"));
                     $profile->cv='';
                     $profile->save();
-                    
                 }
             }else{
                 return json_encode(array('success'=>false,'message'=>$profile->cv." files not exist"));
@@ -206,9 +210,7 @@ class DefaultController extends Controller
         $this->layout=false;
         return $this->render('thanksjoin');
     }
-    // public function actionAdv(){
-    //     return $this->render('adv');
-    // }
+    
     public function actionRegister()
     {
         $model=new Member();

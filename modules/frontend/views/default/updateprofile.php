@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 use app\widgets\Alert;
+use yii\bootstrap4\Modal;
 $js=<<<js
   $('main').addClass('long-decorate');
 js;
@@ -83,7 +84,7 @@ $this->registerJS($js2,View::POS_END,'function');
                   ?>
                 <?php echo '<div class="col-md-12">Annual Salary <br><span style="font-size:xxx-large;">
                   '.$this->context->money($annual_salary).'</span></div>';?>
-                  <div class="container"><button type="button" <?=app\widgets\Gradation::widget(['type'=>'background','direction'=>'270'])?> class="btn-radius btn-primary border-0 pull-right mb-4">Edit</button>
+                  <div class="container"><button type="button" <?=app\widgets\Gradation::widget(['type'=>'background','direction'=>'270'])?> data-toggle="modal" data-target="#modalJobpacket" class="btn-radius btn-primary border-0 pull-right mb-4">Edit</button>
                   </div>
                 </div>
                 
@@ -99,3 +100,7 @@ $this->registerJS($js2,View::POS_END,'function');
     </div>
   </div>
 <div class="clearfix mb-4"></div>
+<?php Modal::begin(['size'=>'modal-xl','title'=>'edit','options'=>['id'=>'modalJobpacket']]);
+echo 'test';
+Modal::end();
+?>
