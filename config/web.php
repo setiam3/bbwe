@@ -3,14 +3,15 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
-    'layout'=>'general',//of theme
+    'layout' => 'general',//of theme
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-        '@uploads'=>'@app/web/uploads/files/',
-        '@urlUpload'=>'/uploads/files/'
+        '@npm' => '@vendor/npm-asset',
+        '@uploads' => '@app/web/uploads/files/',
+        '@urlUpload' => '/uploads/files/',
+        '@mitrm' => '@vendor/mitrm',
     ],
     'modules' => [
         'chat' => [
@@ -30,11 +31,11 @@ $config = [
             'layout' => '@app/modules/backend/views/layouts/main',
         ],
     ],
-    'timeZone'=>'Asia/Jakarta',
+    'timeZone' => 'Asia/Jakarta',
     'components' => [
-        'ffmpeg'=>[
-            'class'=>'\rbtphp\ffmpeg\Ffmpeg',
-            'path'=>'/usr/bin/ffmpeg',
+        'ffmpeg' => [
+            'class' => '\rbtphp\ffmpeg\Ffmpeg',
+            'path' => '/usr/bin/ffmpeg',
         ],
         'session' => [
             'class' => 'yii\web\CacheSession',
@@ -98,7 +99,7 @@ $config = [
             'rules' => [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
             ],
-        ],      
+        ],
     ],
     'params' => $params,
 ];
