@@ -1,0 +1,14 @@
+icon live :
+	- display job -> viewers
+
+icon draft :
+	- form input job
+
+icon time line:
+	- display job only
+icon people:
+	-display job -> with users apply
+icon archive:
+	- display job -> where past job , then can delete job
+icon eyes:
+	-display grapich and viewers has view all job

@@ -27,7 +27,7 @@ class Wheel extends Widget {
     }
 
     public function items() {
-        $items = WheelMenu::find()->where(['status' => 1])->orderBy(new Expression('rand()'))->limit(5)->all();
+        $items = WheelMenu::find()->where(['status' => 1])->orderBy(new Expression('rand()'))->all();
         $item_length = sizeof($items);
 
         if ($item_length > 0) {
