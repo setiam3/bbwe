@@ -11,6 +11,14 @@ if(is_array($arr) && $arr){
   echo 'hash='.$arr[1]."\n";
   echo 'exp='.$arr[2]."\n";
 }
+
+$this->registerJsFile($this->theme->baseUrl.'/js/amcore.js', ['position' => $this::POS_HEAD]);
+$this->registerJsFile($this->theme->baseUrl.'/js/ammaps.js', ['position' => $this::POS_HEAD]);
+$this->registerJsFile($this->theme->baseUrl.'/js/worldHigh.js', ['position' => $this::POS_HEAD]);
+$this->registerJsFile($this->theme->baseUrl.'/js/bbwe-map.js',['position' => $this::POS_END]);
+$this->registerJsVar('baseUrl', Yii::$app->homeUrl);
+
+
 $this->registerJS(
 "
 function getSelectedCountries() {
@@ -24,12 +32,15 @@ function getSelectedCountries() {
 ",View::POS_READY,
     'addopa'
 );?>
+
 <div class="mapholder pic-models ">
   <!-- <div class="masking" style="background: red;width: 100%;height: 100px;">a</div> -->
 <?php
+/*
 $chartConfiguration = [
   'dataProvider' => [
-    'map'=>'worldHigh','getAreasFromMap'=>true,
+    'map'=>'worldHigh',
+    'getAreasFromMap'=>true,
   ],
   'areasSettings'=>[
     "autoZoom"=> false,
@@ -45,22 +56,42 @@ $chartConfiguration = [
     'type' => 'map','theme'=>'dark',//'backgroundAlpha'=>0.4
     
 ];
+*/
+/*
 echo mitrm\amcharts\amMap::widget([
     'chartConfiguration' => $chartConfiguration, 
     'options' => ['id' => 'map'],
     'width' => '100%','height'=>'500px',
     'language' => 'en',
 ]);
+*/
 ?>
 </div>
 
+<div class='mapholder'>
+  <div id="chartdiv"></div>
+</div>
+
+
 <div class="row">
 <style type="text/css">
+
 .mapholder{
   z-index:0;position: absolute;left: 0;right: 0;
 }
 .amcharts-chart-div > a {
     display: none !important;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  text-align: left;
+}
+
+#info {
+  z-index: 100;
 }
 
 </style>
@@ -73,15 +104,7 @@ $("#cookieaggreement").modal({backdrop: "static", keyboard: false});
 }else{
   $("#cookieaggreement").modal({backdrop: "static", keyboard: false});
 }
-map.addListener("clickMapObject", function(event) {
-  document.getElementById("info").innerHTML = "Clicked ID: "+ event.mapObject.id + "(" + event.mapObject.title + ")";
-  if(event.mapObject.id==="GB"){
-    location.href="'.Yii::$app->homeUrl.'frontend/default/"+event.mapObject.id.toLowerCase();
-  }else{
-    location.href="'.Yii::$app->homeUrl.'site/home";
-  }
-  
-});',View::POS_READY
+',View::POS_READY
 );
 ?>
   </div>

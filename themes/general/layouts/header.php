@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use app\widgets\Gradation;
 ?>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-pink">
       <div class="col-sm-3">
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation" style="display: block;">
           <img src="<?=$this->theme->baseUrl?>/images/icon-burger.png" style="width:;">

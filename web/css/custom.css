@@ -62,7 +62,7 @@ a:hover img {
 
 body{
 	color: #fff !important;
-	background-color: black !important;
+	background-color: #06101e !important;
 	font-family: 'Exo-Medium';
 }
 header button[type=submit]{
@@ -94,6 +94,9 @@ header button[type=submit]{
 }
 .bg-dark{
   background: black !important;
+}
+.bg-pink {
+  background: #06101e;
 }
 .bg-adv{
   background-image: url(../images/bg-adv.png);
