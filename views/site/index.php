@@ -12,9 +12,11 @@ if(is_array($arr) && $arr){
   echo 'exp='.$arr[2]."\n";
 }
 
-$this->registerJsFile($this->theme->baseUrl.'/js/amcore.js', ['position' => $this::POS_HEAD]);
-$this->registerJsFile($this->theme->baseUrl.'/js/ammaps.js', ['position' => $this::POS_HEAD]);
-$this->registerJsFile($this->theme->baseUrl.'/js/worldHigh.js', ['position' => $this::POS_HEAD]);
+$this->registerJsFile("https://www.amcharts.com/lib/4/core.js", ['position' => $this::POS_END]);
+$this->registerJsFile("https://www.amcharts.com/lib/4/maps.js", ['position' => $this::POS_END]);
+$this->registerJsFile("https://www.amcharts.com/lib/4/geodata/worldLow.js", ['position' => $this::POS_END]);
+$this->registerJsFile("https://www.amcharts.com/lib/4/geodata/worldHigh.js", ['position' => $this::POS_END]);
+
 $this->registerJsFile($this->theme->baseUrl.'/js/bbwe-map.js',['position' => $this::POS_END]);
 $this->registerJsVar('baseUrl', Yii::$app->homeUrl);
 
@@ -68,7 +70,7 @@ echo mitrm\amcharts\amMap::widget([
 ?>
 </div>
 
-<div class='mapholder'>
+<div class='mapholder mt-5'>
   <div id="chartdiv"></div>
 </div>
 
