@@ -53,7 +53,14 @@ polygonTemplate.events.on("hit", function (ev) {
   // ev.target.series.chart.zoomToMapObject(ev.target);
   // get object info
   // console.log(ev.target.dataItem.dataContext.name);
-  console.log(ev.target.dataItem.dataContext.id);
+  // console.log(ev.target.dataItem.dataContext.id);
+
+  ev.target.strokeWidth = 1.2;
+  ev.target.stroke = am4core.color("#F5F5F5");
+
+  $(".radial-nav-ellipsis").click();
+
 });
 
-$('g[aria-labelledby="id-73-title"]').css('display','none');
+
+$('g[aria-labelledby="id-73-title"]').css('display', 'none');
