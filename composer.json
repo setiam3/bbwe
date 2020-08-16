@@ -33,7 +33,8 @@
         "kartik-v/yii2-builder": "@dev",
         "beastbytes/yii2-wizard": "dev-master",
         "rbtphp/yii2-ffmpeg": "*",
-        "tpmanc/yii2-imagick": "*"
+        "tpmanc/yii2-imagick": "*",
+        "yiisoft/yii2-redis": "~2.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
