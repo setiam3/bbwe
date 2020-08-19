@@ -56,6 +56,8 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            Yii::$app->cache2->set(md5($this->username),$this->_user,3600*24*30);
+            Yii::$app->session->set('auth_token',md5($this->username),3600*24*30);
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;

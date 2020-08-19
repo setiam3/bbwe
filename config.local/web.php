@@ -3,7 +3,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
-    'layout' => 'general',//of theme
+    'layout' => 'general', //of theme
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -21,6 +21,16 @@ $config = [
         'chatroom' => [
             'class' => 'app\modules\chatroom\CM',
             'layout' => '@app/modules/chatroom/views/layouts/main',
+            'as access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ],
+                ],
+            ],
+
         ],
         'frontend' => [
             'class' => 'app\modules\frontend\Frontend',
@@ -33,6 +43,12 @@ $config = [
     ],
     'timeZone' => 'Asia/Jakarta',
     'components' => [
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'ffmpeg' => [
             'class' => '\rbtphp\ffmpeg\Ffmpeg',
             'path' => '/usr/bin/ffmpeg',
@@ -66,6 +82,10 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'cache2' => [
+            'class' => 'yii\redis\Cache',
+            'redis' => 'redis'
         ],
         'user' => [
             'identityClass' => 'app\models\Member',
