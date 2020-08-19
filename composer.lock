@@ -1328,6 +1328,12 @@
                 "widget",
                 "yii2"
             ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/kartik-v",
+                    "type": "open_collective"
+                }
+            ],
             "time": "2020-02-19T04:10:14+00:00"
         },
         {
@@ -1824,18 +1830,18 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:katspaugh/wavesurfer.js.git",
-                "reference": "d857abb923d15c9c2d2a9f6f5143833eff2e09ae"
+                "reference": "590d9ccc96f6c69090849f2e5cfb4587da647ee5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/katspaugh/wavesurfer.js/zipball/d857abb923d15c9c2d2a9f6f5143833eff2e09ae",
-                "reference": "d857abb923d15c9c2d2a9f6f5143833eff2e09ae"
+                "url": "https://api.github.com/repos/katspaugh/wavesurfer.js/zipball/590d9ccc96f6c69090849f2e5cfb4587da647ee5",
+                "reference": "590d9ccc96f6c69090849f2e5cfb4587da647ee5"
             },
             "type": "npm-asset",
             "license": [
                 "BSD-3-Clause"
             ],
-            "time": "2020-08-03T11:42:58+00:00"
+            "time": "2020-08-14T18:11:00+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2663,12 +2669,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d8c3a0ff5efb657a298f22d669e0befe088033da"
+                "reference": "4acd4b47a0bd1879f5b6e3a1b999472a52ee81a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d8c3a0ff5efb657a298f22d669e0befe088033da",
-                "reference": "d8c3a0ff5efb657a298f22d669e0befe088033da",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/4acd4b47a0bd1879f5b6e3a1b999472a52ee81a9",
+                "reference": "4acd4b47a0bd1879f5b6e3a1b999472a52ee81a9",
                 "shasum": ""
             },
             "require": {
@@ -2769,7 +2775,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-07T20:12:20+00:00"
+            "time": "2020-08-19T17:32:15+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2777,12 +2783,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "db98a09ddfbfd564b5cabbf5004a180b7a383588"
+                "reference": "66c41917b90f5d8b4c14c93fbc63b7363d9d235a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/db98a09ddfbfd564b5cabbf5004a180b7a383588",
-                "reference": "db98a09ddfbfd564b5cabbf5004a180b7a383588",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/66c41917b90f5d8b4c14c93fbc63b7363d9d235a",
+                "reference": "66c41917b90f5d8b4c14c93fbc63b7363d9d235a",
                 "shasum": ""
             },
             "require": {
@@ -2832,7 +2838,21 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2019-12-06T16:11:37+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/yiisoft/yii2-bootstrap",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-08-19T11:33:47+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -5272,12 +5292,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "8b40d655a8648ef1d1737d039e0373be32a00f38"
+                "reference": "1f601a29fd7591a0316bffbc0d7550a5953c6c1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8b40d655a8648ef1d1737d039e0373be32a00f38",
-                "reference": "8b40d655a8648ef1d1737d039e0373be32a00f38",
+                "url": "https://api.github.com/repos/symfony/console/zipball/1f601a29fd7591a0316bffbc0d7550a5953c6c1c",
+                "reference": "1f601a29fd7591a0316bffbc0d7550a5953c6c1c",
                 "shasum": ""
             },
             "require": {
@@ -5355,7 +5375,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-11T17:02:45+00:00"
+            "time": "2020-08-17T07:39:58+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -5665,12 +5685,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "e5fe0730123430fa5202c8ce1b03e4efdd1c0277"
+                "reference": "2a78590b2c7e3de5c429628457c47541c58db9c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/e5fe0730123430fa5202c8ce1b03e4efdd1c0277",
-                "reference": "e5fe0730123430fa5202c8ce1b03e4efdd1c0277",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/2a78590b2c7e3de5c429628457c47541c58db9c7",
+                "reference": "2a78590b2c7e3de5c429628457c47541c58db9c7",
                 "shasum": ""
             },
             "require": {
@@ -5720,7 +5740,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-31T06:51:32+00:00"
+            "time": "2020-08-17T09:56:45+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -6036,12 +6056,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c3a7761b26af26198ec077aa1563c7c799ee00fd"
+                "reference": "e06e21e1632acefee71c2d4be67923abdc7f5cd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c3a7761b26af26198ec077aa1563c7c799ee00fd",
-                "reference": "c3a7761b26af26198ec077aa1563c7c799ee00fd",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e06e21e1632acefee71c2d4be67923abdc7f5cd3",
+                "reference": "e06e21e1632acefee71c2d4be67923abdc7f5cd3",
                 "shasum": ""
             },
             "require": {
@@ -6101,7 +6121,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-13T06:22:32+00:00"
+            "time": "2020-08-17T09:35:39+00:00"
         },
         {
             "name": "theseer/tokenizer",
