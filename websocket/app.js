@@ -20,6 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/pictures', express.static(path.join(__dirname, './../web/pictures')));
+app.use('/uploads', express.static(path.join(__dirname, './../web/uploads')));
+app.use('/images', express.static(path.join(__dirname, './../web/images')));
+
 
 app.use(logger('dev'));
 app.use(express.json());

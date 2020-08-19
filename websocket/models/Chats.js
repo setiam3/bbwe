@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Chats.belongsTo(models.Members, { foreignKey: 'created_by', as: 'created' });
     }
   };
   Chats.init({
@@ -20,12 +20,12 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    createdAt:{
-      field:'created_at',
+    createdAt: {
+      field: 'created_at',
       type: DataTypes.DATE
     },
-    updatedAt:{
-      field:'updated_at',
+    updatedAt: {
+      field: 'updated_at',
       type: DataTypes.DATE
     },
     group_id: DataTypes.INTEGER,
