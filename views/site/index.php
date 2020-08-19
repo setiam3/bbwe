@@ -70,7 +70,7 @@ echo mitrm\amcharts\amMap::widget([
 ?>
 </div>
 
-<div class='mapholder mt-5'>
+<div class='mapholder'>
   <div id="chartdiv"></div>
 </div>
 
