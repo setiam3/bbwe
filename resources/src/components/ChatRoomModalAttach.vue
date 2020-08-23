@@ -31,37 +31,37 @@
       <div class="popup-attach" v-if="classRecorderAttach=='attach'">
         <div class="item">
           <a href="#">
-            <img src="/images/icon-map.png" alt />
+            <img src="/images/chatroom-icon-map.png" alt />
             <p>Location</p>
           </a>
         </div>
         <div class="item">
           <a href="#">
-            <img src="/images/icon-gallery.png" alt />
+            <img src="/images/chatroom-icon-gallery.png" alt />
             <p>Gallery</p>
           </a>
         </div>
         <div class="item">
           <a href="#">
-            <img src="/images/icon-camera.png" alt />
+            <img src="/images/chatroom-icon-camera.png" alt />
             <p>Photos</p>
           </a>
         </div>
         <div class="item">
           <a href="#">
-            <img src="/images/icon-email.png" alt />
+            <img src="/images/chatroom-icon-email.png" alt />
             <p>Contact</p>
           </a>
         </div>
         <div class="item">
           <a href="#">
-            <img src="/images/icon-music.png" alt />
+            <img src="/images/chatroom-icon-music.png" alt />
             <p>Music</p>
           </a>
         </div>
         <div class="item">
           <a href="#">
-            <img src="/images/icon-document.png" alt />
+            <img src="/images/chatroom-icon-document.png" alt />
             <p>Document</p>
           </a>
         </div>

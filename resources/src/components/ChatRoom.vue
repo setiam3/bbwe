@@ -3,9 +3,9 @@
     <ChatRoomNavbar />
     <div class="chatroom-main">
       <div class="chatroom-container layout-minimize">
-        <ChatRoomLeftbar/>
+        <ChatRoomLeftbar />
         <div class="chatroom-content">
-         <ChatRoomModalAttach/>
+          <ChatRoomModalAttach />
           <ChatRoomContent />
         </div>
         <ChatRoomActive />
@@ -21,25 +21,25 @@ import ChatRoomContent from "./ChatRoomContent";
 import ChatRoomActive from "./ChatRoomActive";
 import ChatRoomNavbar from "./ChatRoomNavbar";
 import ChatRoomFooter from "./ChatRoomFooter";
-import ChatRoomModalAttach from './ChatRoomModalAttach';
-import ChatRoomLeftbar from './ChatRoomLeftbar';
-import settings from './../config/settings';
-import chatroomStore from "./../stores/chatroomStore";
+import ChatRoomModalAttach from "./ChatRoomModalAttach";
+import ChatRoomLeftbar from "./ChatRoomLeftbar";
+import settings from "./../config/settings";
+import chatroomMixin from "./chatroomMixin";
 let socket = io(settings.socket_host);
 
 export default {
-  store: chatroomStore,
+  mixins: [chatroomMixin],
   components: {
     ChatRoomContent,
     ChatRoomActive,
     ChatRoomNavbar,
     ChatRoomFooter,
     ChatRoomModalAttach,
-    ChatRoomLeftbar
+    ChatRoomLeftbar,
   },
   methods: {
-    getGroup(){
-      this.$store.commit('getGroups');
+    getGroup() {
+      this.$store.commit("getGroups");
     },
     showHideMenu() {
       if ($("#toogle-menu").hasClass("minimize")) {
@@ -68,7 +68,7 @@ export default {
   mounted() {
     let _this = this;
     this.getGroup();
-    this.$store.commit('getGroups');
+    this.$store.commit("getGroups");
     $("#toogle-menu").click(function () {
       if ($(this).hasClass("minimize")) {
         $(this).removeClass("minimize");
@@ -91,10 +91,11 @@ export default {
       socket.emit("leave", this.username);
     };
 
-    socket.on("hello", (data) => {
-      console.log(data);
-      this.messages.push({
-        text: data,
+    this.$store.state.groups.forEach(function (group) {
+      socket.on(group.group_id, (data) => {
+        // this.messages.push({
+        //   text: data,
+        // });
       });
     });
 
@@ -107,29 +108,29 @@ export default {
     });
 
     socket.on("joined", (data) => {
-      this.info.push({
-        username: data,
-        type: "joined",
-      });
+      // this.info.push({
+      //   username: data,
+      //   type: "joined",
+      // });
 
-      setTimeout(() => {
-        this.info = [];
-      }, 5000);
+      // setTimeout(() => {
+      //   this.info = [];
+      // }, 5000);
     });
 
     socket.on("leave", (data) => {
-      this.info.push({
-        username: data,
-        type: "left",
-      });
+      // this.info.push({
+      //   username: data,
+      //   type: "left",
+      // });
 
-      setTimeout(() => {
-        this.info = [];
-      }, 5000);
+      // setTimeout(() => {
+      //   this.info = [];
+      // }, 5000);
     });
 
     socket.on("connections", (data) => {
-      this.connections = data;
+      // this.connections = data;
     });
   },
 };

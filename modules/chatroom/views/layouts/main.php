@@ -9,6 +9,7 @@ AppAsset::register($this);
 <html lang=en>
 
 <head>
+    <title>Chatroom</title>
     <meta charset=utf-8>
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width,initial-scale=1">
@@ -18,6 +19,14 @@ AppAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <?= $content ?>
+
+    <script>
+        window.user={
+            name:"<?= Yii::$app->user->identity->name ?>",
+            photo:"<?= Yii::$app->user->identity->photo ?>",
+            auth_token: "<?= Yii::$app->session->get('auth_token') ?>"
+        };
+    </script>
     <?php $this->endBody() ?>
 </body>
 

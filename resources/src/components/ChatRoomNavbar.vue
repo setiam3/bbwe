@@ -3,17 +3,17 @@
     <div class="chatroom-nav">
       <div class="nav-left container-my">
         <div class="logo">
-          <a href="/">
+          <a href="/chatroom">
             <img src="/images/chatroom_logo_crop.png" alt srcset />
           </a>
         </div>
       </div>
       <div class="nav-center d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-          <div class="icon-wo">
+          <div class="icon-wo" v-if="group_active">
             <img src="/images/icons-wo-circle.png" alt srcset />
           </div>
-          <h4>Black British Exist</h4>
+          <h4 v-if="group_active">{{ group.group_name }}</h4>
         </div>
         <div class="d-flex search-container">
           <div class="search">
@@ -32,10 +32,10 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex align-items-center">
             <div class="icon-wo">
-              <img src="/images/profile.png" alt srcset />
+              <img :src="user.photo" alt srcset />
             </div>
             <div>
-              <h5 class="m-0 p-0">Helen Co</h5>
+              <h5 class="m-0 p-0">{{ user.name }}</h5>
               <small>
                 <span class="iconify color-green" data-icon="carbon:dot-mark" data-inline="false"></span>
                 Active Now
@@ -58,3 +58,14 @@
     </div>
   </div>
 </template>
+<script>
+import chatroomMixin from './chatroomMixin';
+
+export default {
+  mixins:[chatroomMixin],
+  computed: {
+    
+  },
+  mounted() {},
+};
+</script>
