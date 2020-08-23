@@ -1,0 +1,14 @@
+.box-dropdown-menu{
+    position: absolute;
+    width: 220px;
+    height: 200px;
+    z-index: 9999;
+    background: $color-black;
+    margin-top: 35px;
+    padding-right: 50px;
+    border-radius: .3rem;
+    display: none;
+    &.active{
+        display: block;
+    }
+}

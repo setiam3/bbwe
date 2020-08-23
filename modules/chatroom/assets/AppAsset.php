@@ -21,14 +21,17 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/fontawesome.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css',
+        'css/chatroom/main.css',
     ];
 
     public $js = [
+        'https://code.iconify.design/1/1.0.7/iconify.min.js',
+        'js/chatroom/chatroom.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
-        'yii\bootstrap4\BootstrapPluginAsset',
+        // 'yii\web\YiiAsset',
+        // 'yii\bootstrap4\BootstrapAsset',
+        // 'yii\bootstrap4\BootstrapPluginAsset',
     ];
 }
