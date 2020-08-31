@@ -19,7 +19,7 @@ router.get('/chatrooms', async function (req, res, next) {
         {
           model: models.Members,
           as: 'created',
-          attributes: ['name', 'email', 'photo',[models.sequelize.literal(`concat('${req.protocol}://${req.hostname}/',created.photo)`), 'profile']]
+          attributes: ['name', 'email', 'photo',[models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
         },
         {
           model: models.Chats,
@@ -29,7 +29,7 @@ router.get('/chatrooms', async function (req, res, next) {
             {
               model: models.Members,
               as: 'created',
-              attributes: ['name', 'email', 'photo',[models.sequelize.literal(`concat('${req.protocol}://${req.hostname}/',created.photo)`), 'profile']]
+              attributes: ['name', 'email', 'photo',[models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
             }
           ]
         }

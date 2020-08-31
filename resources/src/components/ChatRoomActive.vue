@@ -1,27 +1,35 @@
 <template>
-  <div class="sidebar-right container-my">
-    <div class="member-available">
-      <span class="available-text">Available</span>
-      <a href="#">
-        <span class="iconify" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-      </a>
-    </div>
-    <div class="member animate__animated animate__fadeIn" v-if="group_active">
-      <ul>
-        <li class="d-flex align-items-center justify-content-between" v-for="(user,index) in group_available" v-bind:key="index">
-          <div class="d-flex align-items-center">
+  <div class="sidebar-right">
+    <div class="adv-container"></div>
+    <div class="container-my">
+      <div class="member-available">
+        <span class="available-text">Available</span>
+        <a href="#">
+          <span class="iconify" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+        </a>
+      </div>
+
+      <div class="member animate__animated animate__fadeIn" v-if="group_active">
+        <ul>
+          <li
+            class="d-flex align-items-center justify-content-between"
+            v-for="(user,index) in group_available"
+            v-bind:key="index"
+          >
+            <div class="d-flex align-items-center">
+              <div>
+                <img width="50" :src="user.profile" alt srcset />
+              </div>
+              <div class="member-name">
+                <span>{{user.name}}</span>
+              </div>
+            </div>
             <div>
-              <img width="50" :src="user.profile" alt srcset />
+              <span class="iconify color-green" data-icon="carbon:dot-mark" data-inline="false"></span>
             </div>
-            <div class="member-name">
-              <span>{{user.name}}</span>
-            </div>
-          </div>
-          <div>
-            <span class="iconify color-green" data-icon="carbon:dot-mark" data-inline="false"></span>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
