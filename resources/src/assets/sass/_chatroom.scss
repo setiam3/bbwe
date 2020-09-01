@@ -404,6 +404,9 @@
                         width: 100%;
                         display: flex;
                         align-items: center;
+                        &:last-child{
+                            margin-bottom: 10rem;
+                        }
                         .chat-message-profile {
                             width: 10%;
                             img {

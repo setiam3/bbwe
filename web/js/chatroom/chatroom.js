@@ -2201,6 +2201,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../stores/chatroomStore */ "./resources/src/stores/chatroomStore.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -2226,12 +2235,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   store: _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_0__["default"],
-  computed: {
-    group_selected: function group_selected() {
-      return this.$store.state.group_selected;
-    },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["group_selected"])), {}, {
     group_messages: function group_messages() {
       if (this.group_selected) {
         return this.group_selected.messages;
@@ -2246,6 +2253,9 @@ __webpack_require__.r(__webpack_exports__);
 
       return true;
     }
+  }),
+  watch: {
+    group_selected: function group_selected(val) {}
   }
 });
 
@@ -2260,7 +2270,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../stores/chatroomStore */ "./resources/src/stores/chatroomStore.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../stores/chatroomStore */ "./resources/src/stores/chatroomStore.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2301,7 +2319,12 @@ __webpack_require__.r(__webpack_exports__);
  // import $ from "jquery";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  store: _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_0__["default"],
+  store: _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_1__["default"],
+  data: function data() {
+    return {
+      message: ""
+    };
+  },
   computed: {
     group_selected: function group_selected() {
       return this.$store.state.group_selected;
@@ -2346,6 +2369,31 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.$store.commit("setAttachActive", "");
       }
+    },
+    sendMessage: function sendMessage() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.commit("sendMessage", {
+                  group_id: _this.group_selected.group_id,
+                  message: _this.message
+                });
+
+              case 2:
+                _this.message = "";
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   },
   mounted: function mounted() {}
@@ -17700,44 +17748,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "chatroom-content" }, [
-    !_vm.group_active
-      ? _c("div", { staticClass: "text-welcome" }, [_vm._m(0)])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.group_active
-      ? _c(
-          "div",
-          {
-            staticClass:
-              "chat-message-container animate__animated animate__fadeIn",
-            attrs: { id: "chat-message-container" }
-          },
-          _vm._l(_vm.group_messages, function(message, index) {
-            return _c("div", { key: index, staticClass: "chat-message" }, [
-              _c("div", { staticClass: "chat-message-profile" }, [
-                _c("img", {
-                  attrs: { src: message.created.profile, alt: "", srcset: "" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "chat-message-box" }, [
-                _c("div", { staticClass: "chat-message-text" }, [
-                  _c("p", [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(message.message) +
-                        "\n          "
-                    )
+  return _c(
+    "div",
+    { staticClass: "chatroom-content", attrs: { id: "chatroom-content" } },
+    [
+      !_vm.group_active
+        ? _c("div", { staticClass: "text-welcome" }, [_vm._m(0)])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.group_active
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "chat-message-container animate__animated animate__fadeIn",
+              attrs: { id: "chat-message-container" }
+            },
+            _vm._l(_vm.group_messages, function(message, index) {
+              return _c("div", { key: index, staticClass: "chat-message" }, [
+                _c("div", { staticClass: "chat-message-profile" }, [
+                  _c("img", {
+                    attrs: { src: message.created.profile, alt: "", srcset: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "chat-message-box" }, [
+                  _c("div", { staticClass: "chat-message-text" }, [
+                    _c("p", [_vm._v(_vm._s(message.message))])
                   ])
                 ])
               ])
-            ])
-          }),
-          0
-        )
-      : _vm._e()
-  ])
+            }),
+            0
+          )
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -17778,7 +17824,29 @@ var render = function() {
       _vm._v(" "),
       _vm.group_active
         ? _c("div", { staticClass: "footer-content" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "chatbox-container" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.message,
+                    expression: "message"
+                  }
+                ],
+                staticClass: "chatbox-text",
+                attrs: { type: "text", placeholder: "Type Message" },
+                domProps: { value: _vm.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.message = $event.target.value
+                  }
+                }
+              })
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "tools" }, [
               _c("div", [
@@ -17829,7 +17897,20 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn_1 btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.sendMessage()
+                      }
+                    }
+                  },
+                  [_vm._v("Send")]
+                )
+              ])
             ])
           ])
         : _vm._e()
@@ -17850,25 +17931,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("span", { staticClass: "minimize-hide" }, [_vm._v("Settings")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "chatbox-container" }, [
-      _c("input", {
-        staticClass: "chatbox-text",
-        attrs: { type: "text", placeholder: "Type Message" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("button", { staticClass: "btn btn_1 btn-sm" }, [_vm._v("Send")])
     ])
   }
 ]
@@ -32503,6 +32565,70 @@ var chatroomStore = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
             }
           }
         }, _callee);
+      }))();
+    },
+    getChatByGroup: function getChatByGroup(state, group_id) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _yield$axios$get2, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(_config_settings__WEBPACK_IMPORTED_MODULE_5__["default"].api_host + '/chatrooms/chat-message/' + group_id);
+
+              case 2:
+                _yield$axios$get2 = _context2.sent;
+                data = _yield$axios$get2.data;
+
+                if (data.status_code == 200) {
+                  if (data.data) {
+                    state.group_selected = data.data;
+                  }
+                }
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    sendMessage: function sendMessage(state, params) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _yield$axios$post, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(_config_settings__WEBPACK_IMPORTED_MODULE_5__["default"].api_host + "/chatrooms/chat-message/".concat(params.group_id), {
+                  message: params.message
+                });
+
+              case 2:
+                _yield$axios$post = _context3.sent;
+                data = _yield$axios$post.data;
+
+                if (!data) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                _context3.next = 7;
+                return _this.commit('getChatByGroup', params.group_id);
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }

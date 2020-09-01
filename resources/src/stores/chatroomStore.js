@@ -30,9 +30,26 @@ const chatroomStore = new Vuex.Store({
       state.attach_record_status = data;
     },
     async getGroups(state) {
-      let {data} = await axios.get(settings.api_host + '/chatrooms');
-      if(data.data){
-        state.groups=data.data.groups;
+      let { data } = await axios.get(settings.api_host + '/chatrooms');
+      if (data.data) {
+        state.groups = data.data.groups;
+      }
+    },
+    async getChatByGroup(state, group_id) {
+      let { data } = await axios.get(settings.api_host + '/chatrooms/chat-message/' + group_id);
+      if (data.status_code == 200) {
+        if (data.data) {
+          state.group_selected = data.data;
+        }
+      }
+
+    },
+    async sendMessage(state, params) {
+      let { data } = await axios.post(settings.api_host + `/chatrooms/chat-message/${params.group_id}`, {
+        message: params.message
+      });
+      if (data) {
+        await this.commit('getChatByGroup', params.group_id);
       }
     }
   }

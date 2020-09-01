@@ -9,7 +9,7 @@
       </div>
       <div class="footer-content" v-if="group_active">
         <div class="chatbox-container">
-          <input type="text" class="chatbox-text" placeholder="Type Message" />
+          <input type="text" class="chatbox-text" placeholder="Type Message" v-model="message" />
         </div>
         <div class="tools">
           <div>
@@ -28,7 +28,7 @@
             </a>
           </div>
           <div>
-            <button class="btn btn_1 btn-sm">Send</button>
+            <button class="btn btn_1 btn-sm" @click="sendMessage()">Send</button>
           </div>
         </div>
       </div>
@@ -41,6 +41,11 @@ import chatroomStore from "./../stores/chatroomStore";
 
 export default {
   store: chatroomStore,
+  data() {
+    return {
+      message: "",
+    };
+  },
   computed: {
     group_selected() {
       return this.$store.state.group_selected;
@@ -83,6 +88,13 @@ export default {
       } else {
         this.$store.commit("setAttachActive", "");
       }
+    },
+    async sendMessage() {
+      await this.$store.commit("sendMessage", {
+        group_id: this.group_selected.group_id,
+        message: this.message,
+      });
+      this.message="";
     },
   },
   mounted() {},

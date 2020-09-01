@@ -539,6 +539,10 @@
   align-items: center;
 }
 
+.chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message:last-child {
+  margin-bottom: 10rem;
+}
+
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-profile {
   width: 10%;
   padding-right: 1rem;
