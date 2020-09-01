@@ -2161,6 +2161,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   store: _stores_chatroomStore__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -17581,10 +17585,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "sidebar-right" }, [
-    _c("div", { staticClass: "adv-container" }),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "container-my" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _vm.group_active
         ? _c(
@@ -17619,7 +17623,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1, true)
+                      _vm._m(2, true)
                     ]
                   )
                 }),
@@ -17632,6 +17636,19 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "adv-container" }, [
+      _c("a", { attrs: { href: "/chatroom" } }, [
+        _c("img", {
+          staticClass: "image",
+          attrs: { src: "/images/ads/ads1.jpeg", alt: "" }
+        })
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

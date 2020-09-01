@@ -1,6 +1,10 @@
 <template>
   <div class="sidebar-right">
-    <div class="adv-container"></div>
+    <div class="adv-container">
+      <a href="/chatroom">
+        <img class="image" src="/images/ads/ads1.jpeg" alt />
+      </a>
+    </div>
     <div class="container-my">
       <div class="member-available">
         <span class="available-text">Available</span>

@@ -618,8 +618,14 @@
 
 .chatroom .chatroom-main .chatroom-container .sidebar-right .adv-container {
   width: 100%;
-  min-height: 220px;
+  min-height: 195px;
   background-color: #000000;
+  overflow: hidden;
+  padding-top: 1rem;
+}
+
+.chatroom .chatroom-main .chatroom-container .sidebar-right .adv-container .image {
+  width: 100%;
 }
 
 .chatroom .chatroom-footer {

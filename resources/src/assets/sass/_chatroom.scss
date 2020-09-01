@@ -473,8 +473,13 @@
                 }
                 .adv-container {
                     width: 100%;
-                    min-height: 220px;
+                    min-height: 195px;
                     background-color: #000000;
+                    overflow: hidden;
+                    padding-top: 1rem;
+                    .image{
+                        width: 100%;
+                    }
                 }
             }
         }
