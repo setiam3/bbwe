@@ -2,11 +2,22 @@ var express = require('express');
 var router = express.Router();
 var models = require('./../models/index');
 
+router.use(function (req, res, next) {
+  if (req.method !== "OPTIONS") {
+    if (!req.headers.authorization) {
+      return res.status(403).json({ error: 'No credentials sent!' });
+    }
+  }
+
+  req.params.cobaaa='obbaaaaaaaaaaaaaaaaaa';
+  next();
+});
 
 /**
  * chat list
  */
 router.get('/', async function (req, res, next) {
+  console.log(req.params);
   try {
     const groups = await models.Groups.findAll({
       attributes: [['id', 'group_id'], 'group_name'],
@@ -66,7 +77,7 @@ router.post('/chat-message/:group', async function (req, res, next) {
 router.get('/chat-message/:group_id', async function (req, res, next) {
   try {
     const groups = await models.Groups.findOne({
-      where:{id:req.params.group_id},
+      where: { id: req.params.group_id },
       attributes: [['id', 'group_id'], 'group_name'],
       include: [
         {
@@ -77,7 +88,7 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
         {
           model: models.Chats,
           as: 'messages',
-          attributes: ['message'],
+          attributes: ['message', 'created_at'],
           include: [
             {
               model: models.Members,

@@ -62,7 +62,7 @@ export default {
         $("#" + id).removeClass("active");
       } else {
          $(".list-item-group").removeClass("active");
-        this.$store.commit("setGroup", data[0]);
+        this.$store.commit("getChatByGroup", group_id);
         $("#" + id).addClass("active");
       }
     },

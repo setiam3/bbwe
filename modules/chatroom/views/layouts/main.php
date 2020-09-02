@@ -24,6 +24,7 @@ AppAsset::register($this);
         window.user={
             name:"<?= Yii::$app->user->identity->name ?>",
             photo:"<?= Yii::$app->user->identity->photo ?>",
+            email:"<?= Yii::$app->user->identity->email ?>",
             auth_token: "<?= Yii::$app->session->get('auth_token') ?>"
         };
     </script>

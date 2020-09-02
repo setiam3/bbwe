@@ -400,7 +400,7 @@
                         display: block;
                     }
                     .chat-message {
-                        margin-bottom: 2rem;
+                        margin-bottom: 1rem;
                         width: 100%;
                         display: flex;
                         align-items: center;
@@ -416,6 +416,9 @@
                             padding-right: 1rem;
                         }
                         .chat-message-box {
+                            .at{
+                                opacity: .6;
+                            }
                             width: 80%;
                             .chat-message-text {
                                 padding: 0.5rem;

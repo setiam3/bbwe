@@ -15,6 +15,7 @@
             placeholder="Type Message"
             v-model="message"
             id="chat-box-input"
+            @keyup="onEnterMessage($event)"
           />
         </div>
         <div class="tools">
@@ -102,20 +103,14 @@ export default {
       });
       this.message = "";
     },
+    async onEnterMessage(e){
+      if(e.keyCode===13){
+        await this.sendMessage();
+      }
+    }
   },
   mounted() {
-    let _this = this;
-    var input = document.getElementById("chat-box-inpu");
-    // Execute a function when the user releases a key on the keyboard
-    input.addEventListener("keyup", function (event) {
-      // Number 13 is the "Enter" key on the keyboard
-      if (event.keyCode === 13) {
-        // Cancel the default action, if needed
-        event.preventDefault();
-        // Trigger the button element with a click
-        _this.sendMessage();
-      }
-    });
+
   },
 };
 </script>
