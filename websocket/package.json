@@ -17,6 +17,7 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "redis": "^3.0.2",
+    "redis-store-json": "^1.1.0",
     "sequelize": "^6.3.4",
     "socket.io": "^2.3.0"
   }

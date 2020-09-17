@@ -51,11 +51,6 @@ export default {
   },
   methods: {
     selectGroup(group_id, id) {
-
-      let data = this.groups.filter(function (item) {
-        return item.group_id == group_id;
-      });
-
       if ($("#" + id).hasClass("active")) {
         this.$store.commit("setGroup", {});
         this.$store.commit("setAttachActive", "");

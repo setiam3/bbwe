@@ -526,6 +526,7 @@
   overflow: scroll;
   height: 100%;
   display: block;
+  width: 100%;
 }
 
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container.active {
@@ -537,6 +538,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message:last-child {
@@ -544,13 +546,16 @@
 }
 
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-profile {
-  width: 10%;
-  padding-right: 1rem;
+  width: 60px;
 }
 
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-profile img {
   width: 50px;
   border-radius: 50%;
+}
+
+.chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-profile.profile-2 {
+  margin-left: 0.6rem;
 }
 
 .chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-box {
@@ -572,8 +577,12 @@
   color: #6b6b6b;
 }
 
-.chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message.reverse .chat-message-profile {
-  padding-left: 1rem;
+.chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-box .chat-message-text.me {
+  background: #424242;
+}
+
+.chatroom .chatroom-main .chatroom-container .chatroom-content .chat-message-container .chat-message .chat-message-box .chat-message-text.me p {
+  color: #ffffff;
 }
 
 .chatroom .chatroom-main .chatroom-container .sidebar-right {

@@ -1,15 +1,33 @@
 var express = require('express');
 var router = express.Router();
 var models = require('./../models/index');
+var redisJson = require('redis-store-json')
+var redis = require('redis');
 
-router.use(function (req, res, next) {
+let clientRedis = redis.createClient({
+  host: '127.0.0.1',
+  port: 6379,
+  db: 0
+});
+
+redisJson.use(clientRedis);
+
+router.use(async function (req, res, next) {
   if (req.method !== "OPTIONS") {
     if (!req.headers.authorization) {
       return res.status(403).json({ error: 'No credentials sent!' });
     }
-  }
 
-  req.params.cobaaa='obbaaaaaaaaaaaaaaaaaa';
+
+    await clientRedis.get(req.headers.authorization, function (err, data) {
+      let datas = JSON.parse(data);
+      if (data == null) {
+        return res.status(403).json({ error: 'No credentials sent!' });
+      }
+      // req.headers.id = datas.id;
+      // req.headers.email = datas.email;
+    });
+  }
   next();
 });
 
@@ -17,7 +35,6 @@ router.use(function (req, res, next) {
  * chat list
  */
 router.get('/', async function (req, res, next) {
-  console.log(req.params);
   try {
     const groups = await models.Groups.findAll({
       attributes: [['id', 'group_id'], 'group_name'],
@@ -58,8 +75,9 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/chat-message/:group', async function (req, res, next) {
+  console.log(req.headers);
   try {
-    const newChat = await models.Chats.create({ group_id: req.params.group, created_by: 1, message: req.body.message });
+    const newChat = await models.Chats.create({ group_id: req.params.group, created_by: req.headers.id, message: req.body.message });
     if (newChat) {
       res.json({ message: 'success', 'status_code': 200 });
     }
@@ -88,7 +106,10 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
         {
           model: models.Chats,
           as: 'messages',
-          attributes: ['message', 'created_at'],
+          attributes: ['id','message', 'created_at'],
+          order: [
+            ['id', 'DESC']
+          ],
           include: [
             {
               model: models.Members,

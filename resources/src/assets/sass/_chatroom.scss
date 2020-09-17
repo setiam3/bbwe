@@ -396,6 +396,7 @@
                     overflow: scroll;
                     height: 100%;
                     display: block;
+                    width: 100%;
                     &.active {
                         display: block;
                     }
@@ -404,16 +405,20 @@
                         width: 100%;
                         display: flex;
                         align-items: center;
+                        justify-content: center;
                         &:last-child{
                             margin-bottom: 10rem;
                         }
                         .chat-message-profile {
-                            width: 10%;
+                            width: 60px;
                             img {
                                 width: 50px;
                                 border-radius: 50%;
                             }
-                            padding-right: 1rem;
+                            // padding-right: 1rem;
+                            &.profile-2{
+                                margin-left: .6rem;
+                            }
                         }
                         .chat-message-box {
                             .at{
@@ -428,13 +433,19 @@
                                 p {
                                     color: #6b6b6b;
                                 }
+                                &.me{
+                                    background: #424242;
+                                    p {
+                                        color: #ffffff;
+                                    }
+                                }
                             }
                         }
-                        &.reverse {
-                            .chat-message-profile {
-                                padding-left: 1rem;
-                            }
-                        }
+                        // &.reverse {
+                        //     .chat-message-profile {
+                        //         width: 60px;
+                        //     }
+                        // }
                     }
                 }
             }

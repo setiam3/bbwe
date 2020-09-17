@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const chatroomStore = new Vuex.Store({
   state: {
-    groups: group,
+    groups: [],
     group_selected: {
 
     },
@@ -30,7 +30,7 @@ const chatroomStore = new Vuex.Store({
       state.attach_record_status = data;
     },
     async getGroups(state) {
-      let { data } = await axios.get(settings.api_host + '/chatrooms',{
+      let { data } = await axios.get(settings.api_host + '/chatrooms', {
         headers: settings.header_request
       });
       if (data.data) {
@@ -38,12 +38,12 @@ const chatroomStore = new Vuex.Store({
       }
     },
     async getChatByGroup(state, group_id) {
-      let { data } = await axios.get(settings.api_host + '/chatrooms/chat-message/' + group_id,{
+      let { data } = await axios.get(settings.api_host + '/chatrooms/chat-message/' + group_id, {
         headers: settings.header_request
       });
       if (data.status_code == 200) {
         if (data.data) {
-          state.group_selected = data.data;
+          this.commit('setGroup', data.data);
         }
       }
 
@@ -51,7 +51,7 @@ const chatroomStore = new Vuex.Store({
     async sendMessage(state, params) {
       let { data } = await axios.post(settings.api_host + `/chatrooms/chat-message/${params.group_id}`, {
         message: params.message
-      },{
+      }, {
         headers: settings.header_request
       });
       if (data) {

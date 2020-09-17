@@ -12,22 +12,25 @@
       v-if="group_active"
     >
       <div
-        v-for="(message,index) in group_messages"
+        v-for="message in even(group_messages)"
         :class="{'chat-message':true,'reverse':message.created.email==user.email}"
-        v-bind:key="index"
+        v-bind:key="message.id"
       >
-        <div class="chat-message-profile">
+        <div class="chat-message-profile profile-1">
           <img v-if="message.created.email!=user.email" :src="message.created.profile" alt srcset />
         </div>
         <div class="chat-message-box">
           <p class="p-0 m-0">&nbsp;</p>
-          <div class="chat-message-text">
+          <div :class="{'chat-message-text':true,'me':message.created.email==user.email}">
             <p>{{message.message}}</p>
           </div>
-          <p class="p-0 m-0 pl-3 at" v-if="message.created.email==user.email">Me, At: {{ message.created_at }}</p>
+          <p
+            class="p-0 m-0 pl-3 at"
+            v-if="message.created.email==user.email"
+          >Me, At: {{ message.created_at }}</p>
           <p class="p-0 m-0 pl-3 at" v-else>{{ message.created.name }} At: {{ message.created_at }}</p>
         </div>
-        <div class="chat-message-profile">
+        <div class="chat-message-profile profile-2">
           <img v-if="message.created.email==user.email" :src="message.created.profile" alt srcset />
         </div>
       </div>
@@ -58,6 +61,14 @@ export default {
         return false;
       }
       return true;
+    },
+  },
+  methods: {
+    even: function (arr) {
+      // Set slice() to avoid to generate an infinite loop!
+      return arr.slice().sort(function (a, b) {
+        return a.id - b.id;
+      });
     },
   },
   watch: {

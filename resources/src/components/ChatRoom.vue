@@ -26,6 +26,8 @@ import ChatRoomLeftbar from "./ChatRoomLeftbar";
 import settings from "./../config/settings";
 import chatroomMixin from "./chatroomMixin";
 let socket = io(settings.socket_host);
+import { mapState, mapMutations } from "vuex";
+import "howler";
 
 export default {
   mixins: [chatroomMixin],
@@ -37,7 +39,32 @@ export default {
     ChatRoomModalAttach,
     ChatRoomLeftbar,
   },
+  computed: {
+    ...mapState(["groups", "group_selected"]),
+  },
+  watch: {
+    groups(val) {
+      let _this = this;
+      this.groups.forEach(function (group) {
+        socket.on(group.group_id, async (data) => {
+          if (data.type == "message") {
+            await _this.setGroup(group.group_id);
+
+            if (data.user_id) {
+              if (data.user_id !== window.user.user_id) {
+                _this.notif();
+                $(".list-item-group").removeClass("active");
+                $("#item-group-" + group.group_id).addClass('active');
+              }
+            }
+          }
+        });
+      });
+    },
+    group_selected(val) {},
+  },
   methods: {
+    ...mapMutations(["getChatByGroup"]),
     getGroup() {
       this.$store.commit("getGroups");
     },
@@ -62,6 +89,23 @@ export default {
         $(id).addClass("active");
       } else {
         $(id).removeClass("active");
+      }
+    },
+    async setGroup(group_id) {
+      await this.getChatByGroup(group_id);
+    },
+    notif() {
+      let sound = new Howl({
+        src: "/audio/notif.mp3",
+      });
+      sound.play();
+    },
+    selectGroup(id) {
+      if ($("#" + id).hasClass("active")) {
+        $("#" + id).removeClass("active");
+      } else {
+        $(".list-item-group").removeClass("active");
+        $("#" + id).addClass("active");
       }
     },
   },
@@ -91,12 +135,8 @@ export default {
       socket.emit("leave", this.username);
     };
 
-    this.$store.state.groups.forEach(function (group) {
-      socket.on(group.group_id, (data) => {
-        // this.messages.push({
-        //   text: data,
-        // });
-      });
+    socket.on("hello", (data) => {
+      console.log(data);
     });
 
     socket.on("typing", (data) => {
@@ -112,7 +152,6 @@ export default {
       //   username: data,
       //   type: "joined",
       // });
-
       // setTimeout(() => {
       //   this.info = [];
       // }, 5000);
@@ -123,7 +162,6 @@ export default {
       //   username: data,
       //   type: "left",
       // });
-
       // setTimeout(() => {
       //   this.info = [];
       // }, 5000);

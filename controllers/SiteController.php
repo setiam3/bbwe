@@ -307,7 +307,14 @@ class SiteController extends Controller
         $member->status = 'offline';
         $member->update();
         $auth_token = Yii::$app->session->get('auth_token');
-        Yii::$app->cache2->delete($auth_token);
+        // Yii::$app->cache2->delete($auth_token);
+        $client = new \Predis\Client([
+            'scheme' => 'tcp',
+            'host'   => '127.0.0.1',
+            'port'   => 6379,
+            'db'=>0
+        ]);
+        $client->del($auth_token);
         Yii::$app->user->logout($destroySession = true);
 
         Yii::$app->session->close();

@@ -34,7 +34,8 @@
         "beastbytes/yii2-wizard": "dev-master",
         "rbtphp/yii2-ffmpeg": "*",
         "tpmanc/yii2-imagick": "*",
-        "yiisoft/yii2-redis": "~2.0.0"
+        "yiisoft/yii2-redis": "~2.0.0",
+        "predis/predis": "2.0.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

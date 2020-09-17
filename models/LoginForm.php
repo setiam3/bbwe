@@ -1,7 +1,10 @@
 <?php
+
 namespace app\models;
+
 use Yii;
 use yii\base\Model;
+
 //use app\models\Member;
 /**
  * LoginForm is the model behind the login form.
@@ -43,7 +46,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             if (!$user) {
                 $this->addError($attribute, 'Incorrect username.');
-            }elseif (!$user->validatePassword($this->password)) {
+            } elseif (!$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect password.');
             }
         }
@@ -56,9 +59,19 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            Yii::$app->cache2->set(md5($this->username),$this->_user,3600*24*30);
-            Yii::$app->session->set('auth_token',md5($this->username),3600*24*30);
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            $id = $this->_user->id;
+            $email = $this->_user->email;
+            $data=['email'=>$email,'id'=>$id];
+            $client = new \Predis\Client([
+                'scheme' => 'tcp',
+                'host'   => '127.0.0.1',
+                'port'   => 6379,
+                'db'=>0
+            ]);
+            $client->setex(md5($this->username.time()),3600 * 24 * 30,json_encode($data));
+            // Yii::$app->cache2->add(md5($this->username), $data, 3600 * 24 * 30);
+            Yii::$app->session->set('auth_token', md5($this->username.time()), 3600 * 24 * 30);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
     }

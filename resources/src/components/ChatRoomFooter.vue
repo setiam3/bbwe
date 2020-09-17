@@ -44,6 +44,10 @@
 </template>
 <script>
 import chatroomStore from "./../stores/chatroomStore";
+import io from "socket.io-client/dist/socket.io";
+import settings from "./../config/settings";
+let socket = io(settings.socket_host);
+import { mapState } from "vuex";
 // import $ from "jquery";
 
 export default {
@@ -54,13 +58,12 @@ export default {
     };
   },
   computed: {
-    group_selected() {
-      return this.$store.state.group_selected;
-    },
+    ...mapState(['group_selected']),
+
     group_active() {
       if (
-        Object.keys(this.$store.state.group_selected).length === 0 &&
-        this.$store.state.group_selected.constructor === Object
+        Object.keys(this.group_selected).length === 0 &&
+        this.group_selected.constructor === Object
       ) {
         return false;
       }
@@ -102,15 +105,19 @@ export default {
         message: this.message,
       });
       this.message = "";
+      socket.emit(this.group_selected.group_id, {
+        type: "message",
+        group_id: this.group_selected.group_id,
+        user_id:window.user.user_id,
+        message: this.message,
+      });
     },
-    async onEnterMessage(e){
-      if(e.keyCode===13){
+    async onEnterMessage(e) {
+      if (e.keyCode === 13) {
         await this.sendMessage();
       }
-    }
+    },
   },
-  mounted() {
-
-  },
+  mounted() {},
 };
 </script>

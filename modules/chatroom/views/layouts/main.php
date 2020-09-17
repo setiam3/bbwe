@@ -25,6 +25,7 @@ AppAsset::register($this);
             name:"<?= Yii::$app->user->identity->name ?>",
             photo:"<?= Yii::$app->user->identity->photo ?>",
             email:"<?= Yii::$app->user->identity->email ?>",
+            user_id:"<?= Yii::$app->user->identity->id ?>",
             auth_token: "<?= Yii::$app->session->get('auth_token') ?>"
         };
     </script>

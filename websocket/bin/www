@@ -21,9 +21,9 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-// let socketAPI = require(__dirname+'./../app/socketApi');
+let socketAPI = require(__dirname+'./../app/socketApi');
 
-// socketAPI.io.attach(server);
+socketAPI.io.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.
