@@ -11,6 +11,7 @@ AppAsset::register($this);
 <head>
     <title>Chatroom</title>
     <meta charset=utf-8>
+    <meta name="csrf-token" content="<?= Yii::$app->request->csrfToken; ?>">
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width,initial-scale=1">
     <?php $this->head() ?>

@@ -1,0 +1,11 @@
+.btn_1 {
+    background-color: $color-pink;
+    color: $color-white;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    &:active {
+        border: 0;
+        box-shadow: none;
+        outline: none;
+    }
+}

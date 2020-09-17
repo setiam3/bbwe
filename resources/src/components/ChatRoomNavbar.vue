@@ -13,7 +13,12 @@
           <div class="icon-wo" v-if="group_active">
             <img src="/images/icons-wo-circle.png" alt srcset />
           </div>
-          <h4 v-if="group_active">{{ group.group_name }}</h4>
+          <h4
+            id="groupName"
+            v-if="group_active"
+            contenteditable="true"
+            @blur="updateGroupName()"
+          >{{ group.group_name }}</h4>
         </div>
         <div class="d-flex search-container">
           <div class="search">
@@ -49,9 +54,27 @@
             </div>
           </div>
           <div class="pl-5">
-            <a class="dropdown-menu-right" href="#">
+            <a class="dropdown-menu-right" href="#" @click="showLogout()">
               <span class="iconify" data-icon="ant-design:caret-down-filled" data-inline="false"></span>
             </a>
+          </div>
+          <div class="box-dropdown-logout">
+            <div>
+              <a
+                href="#"
+                onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"
+              >
+                Logout
+                <span
+                  class="iconify"
+                  data-icon="heroicons-outline:logout"
+                  data-inline="false"
+                ></span>
+              </a>
+              <form action="/site/logout" id="logoutForm" method="POST">
+                <input type="hidden" name="_csrf" :value="token" />
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -59,12 +82,34 @@
   </div>
 </template>
 <script>
-import chatroomMixin from './chatroomMixin';
+import chatroomMixin from "./chatroomMixin";
+import $ from "jquery";
+import { mapMutations } from "vuex";
 
 export default {
-  mixins:[chatroomMixin],
+  mixins: [chatroomMixin],
   computed: {
-    
+    token() {
+      return $('meta[name="csrf-token"]').attr("content");
+    },
+  },
+  methods: {
+    ...mapMutations(["updateGroup"]),
+    showLogout() {
+      if ($(".box-dropdown-logout").hasClass("active")) {
+        $(".box-dropdown-logout").removeClass("active");
+      } else {
+        $(".box-dropdown-logout").addClass("active");
+      }
+    },
+    async updateGroupName() {
+      let groupName = $("#groupName").text();
+      let params={
+        group_id:this.group.group_id,
+        group_name:groupName
+      };
+      await this.updateGroup(params);
+    },
   },
   mounted() {},
 };

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Groups.belongsTo(models.Members,{foreignKey: 'created_by', as: 'created'});
       Groups.hasMany(models.Chats,{foreignKey: 'group_id', as: 'messages'});
+      Groups.hasMany(models.GroupHasMember,{foreignKey: 'group_id', as: 'group_member'});
     }
   };
   Groups.init({

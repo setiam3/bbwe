@@ -14,6 +14,7 @@ const chatroomStore = new Vuex.Store({
     },
     attach_active: '',
     attach_record_status: '',
+    contacts: []
   },
   mutations: {
     setGroup(state, data) {
@@ -28,6 +29,9 @@ const chatroomStore = new Vuex.Store({
     },
     setRecordStatus(state, data) {
       state.attach_record_status = data;
+    },
+    setContacts(state, data) {
+      state.contacts = data;
     },
     async getGroups(state) {
       let { data } = await axios.get(settings.api_host + '/chatrooms', {
@@ -57,7 +61,38 @@ const chatroomStore = new Vuex.Store({
       if (data) {
         await this.commit('getChatByGroup', params.group_id);
       }
-    }
+    },
+    async updateGroup(state, params) {
+      let { data } = await axios.post(settings.api_host + `/chatrooms/update-group/${params.group_id}`, {
+        group_name: params.group_name
+      }, {
+        headers: settings.header_request
+      });
+      if (data) {
+        await this.commit('getGroups');
+      }
+    },
+    async createGroup(state, params) {
+      let { data } = await axios.post(settings.api_host + `/chatrooms/create-group`, {
+        group_name: params.group_name
+      }, {
+        headers: settings.header_request
+      });
+      if (data) {
+        await this.commit('getGroups');
+      }
+    },
+    async getContacts(state) {
+      let { data } = await axios.get(settings.api_host + '/chatrooms/contacts', {
+        headers: settings.header_request
+      });
+      if (data.status_code == 200) {
+        if (data.data) {
+          this.commit('setContacts', data.data);
+        }
+      }
+
+    },
   }
 });
 

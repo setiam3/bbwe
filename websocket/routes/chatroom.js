@@ -55,7 +55,12 @@ router.get('/', async function (req, res, next) {
               attributes: ['name', 'email', 'photo', [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
             }
           ]
-        }
+        },
+        {
+          model: models.GroupHasMember,
+          as: 'group_member',
+          attributes: ['member_id']
+        },
       ]
     });
 
@@ -75,7 +80,6 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/chat-message/:group', async function (req, res, next) {
-  console.log(req.headers);
   try {
     const newChat = await models.Chats.create({ group_id: req.params.group, created_by: req.headers.id, message: req.body.message });
     if (newChat) {
@@ -122,6 +126,66 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
     });
     if (groups) {
       res.json({ message: 'success', data: groups, 'status_code': 200 });
+    }
+  }
+  catch (err) {
+    res.json({
+      'status': 'ERROR',
+      'messages': err.messages,
+      'data': {},
+      'status_code': 400
+    })
+  }
+});
+
+/**
+ * update group
+ */
+router.post('/update-group/:group_id', async function (req, res, next) {
+  try {
+    const updateGroup = await models.Groups.update({ group_name: req.body.group_name },{where:{'id':req.params.group_id}});
+    if (updateGroup) {
+      res.json({ message: 'success', 'status_code': 200 });
+    }
+  }
+  catch (err) {
+    res.json({
+      'status': 'ERROR',
+      'messages': err.messages,
+      'data': {},
+      'status_code': 400
+    })
+  }
+});
+
+/**
+ * create new group
+ */
+router.post('/create-group', async function (req, res, next) {
+  try {
+    const newGroup = await models.Groups.create({ group_name: req.body.group_name, created_by: req.headers.id });
+    if (newGroup) {
+      res.json({ message: 'success', 'status_code': 200 });
+    }
+  }
+  catch (err) {
+    res.json({
+      'status': 'ERROR',
+      'messages': err.messages,
+      'data': {},
+      'status_code': 400
+    })
+  }
+});
+
+/**
+ * get contacts
+ */
+router.get('/contacts', async function (req, res, next) {
+  try {
+    const contacts = models.Members.findAll();
+    if (contacts) {
+      res.json({ message: 'success', data: contacts, 'status_code': 200 });
     }
   }
   catch (err) {
