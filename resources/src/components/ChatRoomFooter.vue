@@ -3,7 +3,11 @@
     <div class="chatroom-footer-container layout-minimize">
       <div class="footer-left">
         <div class="setting">
-          <span class="iconify" data-icon="bx:bx-cog" data-inline="false"></span>
+          <span
+            class="iconify"
+            data-icon="bx:bx-cog"
+            data-inline="false"
+          ></span>
           <span class="minimize-hide">Settings</span>
         </div>
       </div>
@@ -23,19 +27,34 @@
             <a
               href="#"
               id="attach-voice"
-              :class="'tools-link '+classRecorder"
+              :class="'tools-link ' + classRecorder"
               @click="openRecorder()"
             >
-              <span class="iconify" data-icon="ic:sharp-keyboard-voice" data-inline="false"></span>
+              <span
+                class="iconify"
+                data-icon="ic:sharp-keyboard-voice"
+                data-inline="false"
+              ></span>
             </a>
           </div>
           <div>
-            <a href="#" id="attach-attach" :class="'tools-link '+classAttach" @click="openAttach()">
-              <span class="iconify" data-icon="eva:attach-outline" data-inline="false"></span>
+            <a
+              href="#"
+              id="attach-attach"
+              :class="'tools-link ' + classAttach"
+              @click="openAttach()"
+            >
+              <span
+                class="iconify"
+                data-icon="eva:attach-outline"
+                data-inline="false"
+              ></span>
             </a>
           </div>
           <div>
-            <button class="btn btn_1 btn-sm" @click="sendMessage()">Send</button>
+            <button class="btn btn_1 btn-sm" @click="sendMessage()">
+              Send
+            </button>
           </div>
         </div>
       </div>
@@ -48,6 +67,7 @@ import io from "socket.io-client/dist/socket.io";
 import settings from "./../config/settings";
 let socket = io(settings.socket_host);
 import { mapState } from "vuex";
+
 // import $ from "jquery";
 
 export default {
@@ -58,7 +78,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['group_selected']),
+    ...mapState(["group_selected"]),
 
     group_active() {
       if (
@@ -108,7 +128,7 @@ export default {
       socket.emit(this.group_selected.group_id, {
         type: "message",
         group_id: this.group_selected.group_id,
-        user_id:window.user.user_id,
+        user_id: window.user.user_id,
         message: this.message,
       });
     },
@@ -116,7 +136,7 @@ export default {
       if (e.keyCode === 13) {
         await this.sendMessage();
       }
-    },
+    }
   },
   mounted() {},
 };

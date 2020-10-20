@@ -17,15 +17,15 @@
         <ul>
           <li
             class="d-flex align-items-center justify-content-between"
-            v-for="(user,index) in group_available"
+            v-for="(usr,index) in group_available"
             v-bind:key="index"
           >
             <div class="d-flex align-items-center">
               <div>
-                <img width="50" :src="user.profile" alt srcset />
+                <img width="40" class="rounded-circle" :src="usr.group_contact.profile" alt srcset />
               </div>
-              <div class="member-name">
-                <span>{{user.name}}</span>
+              <div class="member-name pl-1">
+                <span>{{usr.group_contact.name}}</span>
               </div>
             </div>
             <div>
@@ -38,29 +38,17 @@
   </div>
 </template>
 <script>
-import chatroomStore from "./../stores/chatroomStore";
+import chatroomMixin from "./chatroomMixin";
 
 export default {
-  store: chatroomStore,
+  mixins: [chatroomMixin],
   computed: {
-    group_selected() {
-      return this.$store.state.group_selected;
-    },
     group_available() {
-      if (this.group_selected) {
-        return this.group_selected.user_active;
+      if (this.group) {
+        return this.group.group_member;
       }
       return {};
-    },
-    group_active() {
-      if (
-        Object.keys(this.$store.state.group_selected).length === 0 &&
-        this.$store.state.group_selected.constructor === Object
-      ) {
-        return false;
-      }
-      return true;
-    },
+    }
   },
 };
 </script>

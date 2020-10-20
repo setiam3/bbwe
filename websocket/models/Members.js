@@ -22,13 +22,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    photo: DataTypes.STRING,
+    photo: {
+      type: DataTypes.STRING,
+      get(val) {
+        return 'http://localhost:3000/' + val;
+      }
+    }
   },
     {
       sequelize,
       modelName: 'Members',
       tableName: 'member',
-      timestamps:false
+      timestamps: false
     });
   return Members;
 };

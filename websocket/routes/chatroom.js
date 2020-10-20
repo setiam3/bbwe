@@ -42,7 +42,7 @@ router.get('/', async function (req, res, next) {
         {
           model: models.Members,
           as: 'created',
-          attributes: ['name', 'email', 'photo', [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
+          attributes: ['name', 'email', ['photo','profile']]
         },
         {
           model: models.Chats,
@@ -52,7 +52,7 @@ router.get('/', async function (req, res, next) {
             {
               model: models.Members,
               as: 'created',
-              attributes: ['name', 'email', 'photo', [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
+              attributes: ['name', 'email', ['photo','profile']]
             }
           ]
         },
@@ -105,12 +105,12 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
         {
           model: models.Members,
           as: 'created',
-          attributes: ['name', 'email', 'photo', [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
+          attributes: ['name', 'email', ['photo','profile']]
         },
         {
           model: models.Chats,
           as: 'messages',
-          attributes: ['id','message', 'created_at'],
+          attributes: ['id', 'message', 'created_at'],
           order: [
             ['id', 'DESC']
           ],
@@ -118,10 +118,22 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
             {
               model: models.Members,
               as: 'created',
-              attributes: ['name', 'email', 'photo', [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',created.photo)`), 'profile']]
+              attributes: ['name', 'email', ['photo','profile']]
             }
           ]
-        }
+        },
+        {
+          model: models.GroupHasMember,
+          as: 'group_member',
+          attributes: ['group_id','member_id'],
+          include:[
+            {
+              model: models.Members,
+              as: 'group_contact',
+              attributes: ['name', 'email', ['photo','profile']]
+            },
+          ]
+        },
       ]
     });
     if (groups) {
@@ -129,9 +141,10 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
     }
   }
   catch (err) {
+    console.log(err);
     res.json({
       'status': 'ERROR',
-      'messages': err.messages,
+      'messages': err,
       'data': {},
       'status_code': 400
     })
@@ -143,7 +156,7 @@ router.get('/chat-message/:group_id', async function (req, res, next) {
  */
 router.post('/update-group/:group_id', async function (req, res, next) {
   try {
-    const updateGroup = await models.Groups.update({ group_name: req.body.group_name },{where:{'id':req.params.group_id}});
+    const updateGroup = await models.Groups.update({ group_name: req.body.group_name }, { where: { 'id': req.params.group_id } });
     if (updateGroup) {
       res.json({ message: 'success', 'status_code': 200 });
     }
@@ -165,6 +178,14 @@ router.post('/create-group', async function (req, res, next) {
   try {
     const newGroup = await models.Groups.create({ group_name: req.body.group_name, created_by: req.headers.id });
     if (newGroup) {
+      if (req.body.members) {
+        if (req.body.members.length > 0) {
+          for (let index = 0; index < req.body.members.length; index++) {
+            const id = req.body.members[index].id;
+            await models.GroupHasMember.create({ group_id: newGroup.id, member_id: id });
+          }
+        }
+      }
       res.json({ message: 'success', 'status_code': 200 });
     }
   }
@@ -183,9 +204,12 @@ router.post('/create-group', async function (req, res, next) {
  */
 router.get('/contacts', async function (req, res, next) {
   try {
-    const contacts = models.Members.findAll();
-    if (contacts) {
-      res.json({ message: 'success', data: contacts, 'status_code': 200 });
+    let members = await models.Members.findAll({
+      attributes: ['id', 'name', 'email', ['photo','profile'], [models.sequelize.literal(`concat('${req.protocol}://${req.hostname}:3000/',photo)`), 'profile']]
+    });
+    console.log(members);
+    if (members) {
+      res.json({ 'status_code': 200, message: 'success', data: members });
     }
   }
   catch (err) {

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // group
       GroupHasMember.belongsTo(models.Groups,{foreignKey: 'group_id', as: 'group'});
-      GroupHasMember.belongsTo(models.Members,{foreignKey: 'member_id', as: 'member'});
+      GroupHasMember.belongsTo(models.Members,{foreignKey: 'member_id', as: 'group_contact'});
     }
   };
   GroupHasMember.init({

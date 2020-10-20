@@ -47,26 +47,76 @@
               </div>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" v-model="group_name" />
+              <input type="text" class="form-control" v-model="group_name" required />
             </div>
           </div>
           <div class="row pt-3">
             <div class="col-md-12">
-              <h5 class="color-white">Member <a @click="showMember()" href="#" class="color-white txt-decor-none btn-add-member"><span class="iconify" data-icon="ant-design:plus-circle-filled" data-inline="false"></span></a></h5>
-              <div class="member-group p-1">
-                <h6 class="color-white">Contact</h6>
-                <ul>
-                  <li class="d-flex align-items-center justify-content-between pr-2">
-                    <a class="color-white d-flex align-items-center" href="#">
+              <h5 class="color-white">
+                Member
+                <a
+                  @click="showMember()"
+                  href="#"
+                  class="color-white txt-decor-none btn-add-member"
+                >
+                  <span
+                    class="iconify"
+                    data-icon="ant-design:plus-circle-filled"
+                    data-inline="false"
+                  ></span>
+                </a>
+              </h5>
+
+              <div class="row" v-if="member_show==false">
+                <div class="col-md-5">
+                  <ul class="m-0 p-0">
+                    <li
+                      class="d-flex align-items-center justify-content-between pr-2 mb-2"
+                      v-for="contact in members"
+                      v-bind:key="contact.id"
+                    >
+                      <a class="color-white d-flex align-items-center">
+                        <div>
+                          <img width="30" :src="contact.profile" alt />
+                        </div>
+                        <div class="pl-2">{{contact.name}}</div>
+                      </a>
                       <div>
-                      <img src="/images/icons-wo-circle.png" alt="">
-                    </div>
-                    <div class="pl-2">
-                      Jola Jola
-                    </div>
+                        <span
+                          class="iconify color-green"
+                          data-icon="carbon:dot-mark"
+                          data-inline="false"
+                        ></span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="member-group p-1">
+                <!-- <h6 class="color-white">Contact</h6> -->
+                <ul>
+                  <li
+                    class="d-flex align-items-center justify-content-between pr-2 mb-2"
+                    v-for="contact in contacts"
+                    v-bind:key="contact.id"
+                  >
+                    <a
+                      class="color-white d-flex align-items-center"
+                      href="#"
+                      @click="addMember(contact.id)"
+                    >
+                      <div>
+                        <img width="30" :src="contact.profile" alt />
+                      </div>
+                      <div class="pl-2">{{contact.name}}</div>
                     </a>
                     <div>
-                       <span class="iconify color-green" data-icon="carbon:dot-mark" data-inline="false"></span>
+                      <span
+                        class="iconify color-green"
+                        data-icon="carbon:dot-mark"
+                        data-inline="false"
+                      ></span>
                     </div>
                   </li>
                 </ul>
@@ -88,7 +138,7 @@
 import Vue from "vue";
 import chatroomMixin from "./chatroomMixin";
 import $ from "jquery";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import vmodal from "vue-js-modal";
 Vue.use(vmodal);
 
@@ -97,15 +147,18 @@ export default {
   data() {
     return {
       group_name: "",
+      members:[],
+      member_show:false,
     };
   },
   computed: {
+    ...mapState(["contacts"]),
     groups() {
       return this.$store.state.groups;
     },
   },
   methods: {
-    ...mapMutations(["createGroup","getContacts"]),
+    ...mapMutations(["createGroup", "getContacts"]),
     selectGroup(group_id, id) {
       if ($("#" + id).hasClass("active")) {
         this.$store.commit("setGroup", {});
@@ -124,18 +177,28 @@ export default {
       this.$modal.hide("group_modal");
     },
     async createNewGroup() {
-      await this.createGroup({ group_name: this.group_name });
+      await this.createGroup({ group_name: this.group_name,members:this.members });
       this.closeGroupModal();
-      this.group_name="";
+      this.group_name = "";
     },
-    showMember(){
-      if($('.member-group').hasClass("active")){
-        $('.member-group').removeClass("active");
-      }else{
+    showMember() {
+      if ($(".member-group").hasClass("active")) {
+        $(".member-group").removeClass("active");
+        this.member_show=false;
+      } else {
         this.getContacts();
-        $('.member-group').addClass("active");
+        $(".member-group").addClass("active");
+        this.member_show=true;
       }
-    }
+    },
+    addMember(id) {
+      let member = this.contacts.filter(function(item){
+        return item.id == id;
+      });
+      let memberone = Object.assign({},...member);
+      this.members.push(memberone);
+      this.showMember();
+    },
   },
   mounted() {},
 };

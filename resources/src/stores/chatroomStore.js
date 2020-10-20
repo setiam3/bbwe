@@ -74,7 +74,8 @@ const chatroomStore = new Vuex.Store({
     },
     async createGroup(state, params) {
       let { data } = await axios.post(settings.api_host + `/chatrooms/create-group`, {
-        group_name: params.group_name
+        group_name: params.group_name,
+        members:params.members
       }, {
         headers: settings.header_request
       });
