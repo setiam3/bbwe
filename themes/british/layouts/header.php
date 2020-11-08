@@ -44,7 +44,7 @@ use app\widgets\Gradation;
       <div class="navbar-collapse collapse" id="navbarCollapse" style="">
         <ul class="list-inline navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?=Url::to(['index'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-home.png"></a>
+            <a class="nav-link site_navlink" href="<?=Url::to(['index'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-home.png"></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=Url::to(['info'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-info.png"></a>

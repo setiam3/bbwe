@@ -5,15 +5,19 @@ use app\widgets\Gradation;
 ?>
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-pink">
-      <div class="col-sm-3">
+      <div class="col-md-4">
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation" style="display: block;">
           <img src="<?=$this->theme->baseUrl?>/images/icon-burger.png" style="width:;">
         </button> -->
         <?php 
         $name=''; //print_r(Yii::$app->user->identity);die;
+        $photo=Url::home(true).'images/avatars.jpg';
         if(!empty(Yii::$app->user->identity->name))
           $name=Yii::$app->user->identity->name;
-          $email='Yii::$app->user->identity->email';
+          $email=Yii::$app->user->identity->email??'';
+        if(!empty(Yii::$app->user->identity->photo)){
+          $photo=Url::home(true).Yii::$app->user->identity->photo;
+        }
         $beforeLogin='
          <div class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.
@@ -28,7 +32,7 @@ use app\widgets\Gradation;
             <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton" '.Gradation::widget(['direction'=>310]).' style="width:100%">
               <div class="center" style="color: white;">
                 <a href="'.Url::to(['profile']).'">
-                  <img src="'.Url::home(true).'images/avatars.jpg" class="profile-pic img-fluid" style="max-width:60%">
+                  <img src="'.$photo.'" class="profile-pic img-fluid" style="max-width:100px;">
                 <div class="memberName">'.$name.'</div>
                 <div class="memberName" style="border-bottom: 1px solid #eee;">'.$email.'</div>
               </a>
@@ -40,14 +44,14 @@ use app\widgets\Gradation;
           ?>
       </div>
       </div>
-      <div class="col-sm-3">
-        <a class="navbar-brand" href="<?=Url::to(['index'])?>"><img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid"></a>
+      <div class="col-md-3 text-center">
+        <a class="navbar-brand" href="<?=Url::to(['/'])?>"><img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid"></a>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
       <div class="navbar-collapse collapse" id="navbarCollapse" style="">
         <ul class="list-inline navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?=Url::to(['index'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-home.png"></a>
+            <a class="nav-link" href="<?=Url::to(['/'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-home.png"></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=Url::to(['info'])?>"><img src="<?php echo $this->theme->baseUrl; ?>/images/icon-info.png"></a>

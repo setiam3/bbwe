@@ -12,8 +12,11 @@ let mix = require('laravel-mix');
  */
 mix.setPublicPath('./web');
 
-mix.js('./resources/src/chatroom.js','./web/js/chatroom');
-mix.sass('./resources/src/assets/sass/main.scss','./web/css/chatroom');
+mix.js('./resources/src/chatroom.js','./web/js/chatroom')
+mix.js('./resources/src/app/profile/profile.js','./web/js/app/profile')
+mix.sass('./resources/src/assets/sass/main.scss','./web/css/chatroom')
+mix.sass('./resources/src/assets/sass/site/main.scss','./web/css/site')
+mix.sass('./resources/src/assets/sass/site/profile.scss','./web/css/site')
 
 // Full API
 // mix.js(src, output);

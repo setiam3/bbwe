@@ -3,6 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\web\View;
 use app\assets\AppAsset;
+use yii\helpers\Url;
+use app\widgets\Gradation;
 AppAsset::register($this);
 $js=<<<js
   if($('main').find('img').hasClass('logos')){
@@ -10,13 +12,10 @@ $js=<<<js
   }
   $(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
   setTimeout(function(){ $('.alert').remove(); }, 3000);
-  
-  //$(".alert").animate({opacity: 1.0}, 3000).fadeOut("slow");
-  // CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
-  // CKEDITOR.config.allowedContent=true;
+  CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);
+  CKEDITOR.config.allowedContent=true;
 js;
-$this->registerJS($js,View::POS_READY,'rm');
-
+$this->registerJS($js,View::POS_END,'adddecorate');
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -32,16 +31,11 @@ $this->registerJS($js,View::POS_READY,'rm');
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet"> -->
 <script src="<?php echo $this->theme->baseUrl; ?>/js/jquery-latest.min.js"></script>
 </head>
-<body class="site">
+<body>
 <?php $this->beginBody(); ?>
 <?php include('header.php');?>
 <main role="main">
-
-<div class="container">
-  <?php 
-  echo $content;?>
-</div>
-<!-- <div class="clearfix mb-10"></div> -->
+  <?php echo $content;?>
 </main>
 <footer id="footer" class="pic-models">
   <div class="container">

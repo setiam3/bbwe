@@ -13,6 +13,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\InviteForm;
 use app\models\Member;
+use app\models\MemberOrigin;
 use app\models\MemberInvited;
 use app\models\MemberSearch;
 use app\models\MemberVideo;
@@ -171,9 +172,12 @@ class SiteController extends Controller
     }
     public function actionProfile()
     {
+        $this->layout='general_full_width';
+
         $id = Yii::$app->user->id;
         $member = Member::find()->where(['deactivated_account' => 0])->andWhere(['!=', 'id', $id])->orderBy('datetime desc')->limit(2)->all();
-        return $this->render('profile', ['model' => $this->findModel($id, 'Member'), 'member' => $member]);
+        $user=Member::findOne($id)->toArray();
+        return $this->render('profile', ['model' => $this->findModel($id, 'Member'), 'member' => $member,'user'=>$user]);
     }
     public function actionProfileguestpaid()
     {

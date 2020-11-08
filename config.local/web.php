@@ -116,8 +116,10 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<action:(.*)>' => 'site/<action>',
             ],
         ],
     ],

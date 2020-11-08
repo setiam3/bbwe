@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace app\assets;
+namespace app\assets\site;
 
 use yii\web\AssetBundle;
 use Yii;
@@ -16,22 +16,18 @@ use Yii;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class ProfileAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/custom.css',
-        'css/font-awesome.min.css',
-        'css/fontawesome.min.css',
-        'css/site/main.css',
+        'css/site/profile.css'
     ];
 
     public $js = [
+        'js/app/profile/profile.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
-        'yii\bootstrap4\BootstrapPluginAsset',
+        'app\assets\AppAsset',
     ];
 }

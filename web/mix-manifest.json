@@ -1,4 +1,7 @@
 {
+    "/js/app/profile/profile.js": "/js/app/profile/profile.js",
     "/js/chatroom/chatroom.js": "/js/chatroom/chatroom.js",
-    "/css/chatroom/main.css": "/css/chatroom/main.css"
+    "/css/chatroom/main.css": "/css/chatroom/main.css",
+    "/css/site/main.css": "/css/site/main.css",
+    "/css/site/profile.css": "/css/site/profile.css"
 }

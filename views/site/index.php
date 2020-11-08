@@ -6,11 +6,11 @@ use yii\base\Widget;
 use app\widgets\Wheel;
 $arr=Json::decode(Yii::$app->request->cookies['_identity']);
 
-if(is_array($arr) && $arr){
-  echo 'id='.$arr[0]."\n";
-  echo 'hash='.$arr[1]."\n";
-  echo 'exp='.$arr[2]."\n";
-}
+// if(is_array($arr) && $arr){
+//   echo 'id='.$arr[0]."\n";
+//   echo 'hash='.$arr[1]."\n";
+//   echo 'exp='.$arr[2]."\n";
+// }
 
 $this->registerJsFile("https://www.amcharts.com/lib/4/core.js", ['position' => $this::POS_END]);
 $this->registerJsFile("https://www.amcharts.com/lib/4/maps.js", ['position' => $this::POS_END]);

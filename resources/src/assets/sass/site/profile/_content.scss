@@ -1,0 +1,16 @@
+.profile_banner_photo_container{
+    height: 170px;
+    width: 100%;
+    background-image: url('/images/long-decorate3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    img{
+        width: 230px;
+        border-radius: 50%;
+        border: 5px solid #ffffff;
+    }
+}
