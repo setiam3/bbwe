@@ -44,10 +44,10 @@ use app\widgets\Gradation;
           ?>
       </div>
       </div>
-      <div class="col-md-3 text-center">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
         <a class="navbar-brand" href="<?=Url::to(['/'])?>"><img src="<?=$this->theme->baseUrl?>/images/logo.png" class="img-fluid"></a>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
       <div class="navbar-collapse collapse" id="navbarCollapse" style="">
         <ul class="list-inline navbar-nav">
           <li class="nav-item">

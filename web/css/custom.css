@@ -70,8 +70,8 @@ header button[type=submit]{
   background: none;
 }
 .navbar-brand{
-  position: absolute;
-  top: -2.3em;
+  /* position: absolute;
+  top: -2.3em; */
 }
 .imgcontainer{
   position: relative;
@@ -412,7 +412,7 @@ textarea.form-control{
 footer{
   position: fixed;
   bottom: 0;
-  z-index: -1;
+  z-index: 999;
   width: 100%;
   background: black;
 }
@@ -642,12 +642,12 @@ footer{
     border: none;
   }
   .navbar-brand{
-    position: fixed;
+    /* position: fixed;
     top: 0;
     padding-top: 3%;
     width: 60%;
     margin-left: 24%;
-  }
+  } */
   #navbarCollapse {
     float: left;
     width: 100%;

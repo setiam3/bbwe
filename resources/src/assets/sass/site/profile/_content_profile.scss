@@ -1,0 +1,37 @@
+.content_profile {
+    padding: 0 15px 0 15px;
+    .profile-page-menu {
+        display: flex;
+        .tools-item {
+            img {
+                width: 56px;
+            }
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid white;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .content-profile-body {
+       .adv{
+           text-align: center;
+        .text-not-have-adv {
+            text-align: center;
+            margin-top: 100px;
+            background: linear-gradient(45deg, #cc0379, #49b2ba);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-adv{
+            background: linear-gradient(45deg, #cc0379, #49b2ba);
+            color: #FFFFFF;
+            border-radius: 50px;
+            border: none;
+            padding: 12px 25px 12px 25px;
+            font-size: 24px;
+        }
+       }
+    }
+}
