@@ -20,7 +20,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Home from "./pages/Home";
+
 import Contacts from "./pages/Contacts";
+import ContactCreate from "./pages/ContactCreate";
+
 import Advertisement from "./pages/Advertisement";
 import Jobs from "./pages/Jobs";
 import JobsCreate from "./pages/JobsCreate";
@@ -35,6 +38,11 @@ const routes = [
     path: "/contacts",
     component: Contacts,
     name: "contacts",
+  },
+   {
+    path: "/contacts/create",
+    component: ContactCreate,
+    name: "contact_create",
   },
   {
     path: "/advertisement",

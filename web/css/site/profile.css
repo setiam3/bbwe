@@ -81,6 +81,7 @@
 
 .profile_page .profile_content_container .profile_content_right_section .content_profile .profile-page-menu {
   display: flex;
+  justify-content: space-between;
 }
 
 .profile_page .profile_content_container .profile_content_right_section .content_profile .profile-page-menu .tools-item {
@@ -95,6 +96,17 @@
 
 .profile_page .profile_content_container .profile_content_right_section .content_profile .profile-page-menu .tools-item:last-child {
   border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.profile_page .profile_content_container .profile_content_right_section .content_profile .content-profile-body .btn_rounded {
+  background: #000000;
+  color: #FFFFFF;
+  border-radius: 50px;
+  border: none;
+  padding: 10px 25px 10px 25px;
+  font-size: 20px;
 }
 
 .profile_page .profile_content_container .profile_content_right_section .content_profile .content-profile-body .adv {

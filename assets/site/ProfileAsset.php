@@ -25,6 +25,7 @@ class ProfileAsset extends AssetBundle
     ];
 
     public $js = [
+        'https://code.iconify.design/1/1.0.7/iconify.min.js',
         'js/app/profile/profile.js'
     ];
     public $depends = [
