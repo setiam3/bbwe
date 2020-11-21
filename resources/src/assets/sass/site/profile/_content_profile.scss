@@ -10,6 +10,11 @@
             margin-right: 20px;
             padding-right: 20px;
             border-right: 1px solid white;
+
+            &.active {
+                border-bottom: 2px solid $color-orange;
+                text-align: center;
+            }
             &:last-child {
                 border-right: none;
                 margin-right: 0;
@@ -18,31 +23,48 @@
         }
     }
     .content-profile-body {
-        .btn_rounded{
+        .btn_rounded {
             background: #000000;
-            color: #FFFFFF;
+            color: #ffffff;
             border-radius: 50px;
             border: none;
             padding: 10px 25px 10px 25px;
             font-size: 20px;
         }
-       .adv{
-           text-align: center;
-        .text-not-have-adv {
+        .adv {
             text-align: center;
-            margin-top: 100px;
-            background: linear-gradient(45deg, #cc0379, #49b2ba);
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            .text-not-have-adv {
+                text-align: center;
+                margin-top: 100px;
+                background: linear-gradient(45deg, #cc0379, #49b2ba);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .btn-adv {
+                background: linear-gradient(45deg, #cc0379, #49b2ba);
+                color: #ffffff;
+                border-radius: 50px;
+                border: none;
+                padding: 12px 25px 12px 25px;
+                font-size: 24px;
+            }
         }
-        .btn-adv{
-            background: linear-gradient(45deg, #cc0379, #49b2ba);
-            color: #FFFFFF;
-            border-radius: 50px;
-            border: none;
-            padding: 12px 25px 12px 25px;
-            font-size: 24px;
+        .contacts {
+            .contact_list {
+                background-color: $color-secondary-2;
+                color: $color-primary;
+                img{
+                    height: 70px;
+                }
+            }
+            .btn_create {
+                background: linear-gradient(45deg, #cc0379, #49b2ba);
+                color: #ffffff;
+                border-radius: 50px;
+                border: none;
+                padding: 12px 25px 12px 25px;
+                font-size: 24px;
+            }
         }
-       }
     }
 }

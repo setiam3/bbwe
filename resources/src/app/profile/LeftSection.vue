@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <h2 class="text-center mt-5 mb-5">You may also want to see</h2>
+    <h2 class="text-center- ml-5 mt-5 mb-5">You may also want to see</h2>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="profile_banner_photo_container">
-      <img :src="`/${user.photo}`" alt="">
+     <a href="/site/updateprofile"> <img :src="`/${user.photo}`" alt=""></a>
   </div>
 </template>
 <script>

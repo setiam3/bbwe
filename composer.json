@@ -35,7 +35,8 @@
         "rbtphp/yii2-ffmpeg": "*",
         "tpmanc/yii2-imagick": "*",
         "yiisoft/yii2-redis": "~2.0.0",
-        "predis/predis": "2.0.x-dev"
+        "predis/predis": "2.0.x-dev",
+        "yiisoft/yii2-collection": "^1.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -47,6 +47,9 @@ $this->registerJS($js,View::POS_END,'adddecorate');
     </div>
   </div>
 </footer>
+<script>
+window.csrf = "<?=\Yii::$app->request->csrfToken?>";
+</script>
 <?php $this->endBody(); ?>
 </body>
 </html>

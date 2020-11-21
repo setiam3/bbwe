@@ -5,7 +5,8 @@ const mixins = {
     store: stores,
     computed: {
         ...mapState(['user'])
-    }
+    },
+    
 }
 
 export default mixins;

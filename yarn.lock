@@ -921,6 +921,16 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
+"@sweetalert2/theme-borderless@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/theme-borderless/-/theme-borderless-4.0.1.tgz#d8ecc50ea30f8b814c56d8acbcbb536dcd3f7235"
+  integrity sha512-v6uPDyJrmCdQ2g5gFfjEJvPPiy5dc11cLXU61nP30KGWe4Ul5NIdxG0sEI+K6oRGcF+pWHoeBI4LaNStcS5Wmg==
+
+"@sweetalert2/theme-dark@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/theme-dark/-/theme-dark-4.0.1.tgz#d4bf33fa836b8c7d6bdfa3d7ddb9e70c133fac23"
+  integrity sha512-GBDG2o2uhxXrRploARkrLdytmLk7qjbMbpIlRtYqcOiRbtWmogTzs27759h9B2723qBck8gX9TmSCpZDkXk2RQ==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -7398,6 +7408,11 @@ svgo@^1.0.0:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^10.10.1:
+  version "10.10.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.10.1.tgz#47c46929eff4837c8296836aa169073bae418031"
+  integrity sha512-lUdjFEE3ZKJ9OIhIZ1v3yAMwC5gGsBz5N/+FvTVY0Ttw+ZVcoIIPX2K4V+p+PKnFChm0Pan1j8xwYLgcvt0O7g==
 
 symbol-tree@^3.2.2:
   version "3.2.4"
