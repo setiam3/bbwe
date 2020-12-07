@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\profiles;
 
 use app\models\Member;
 use app\models\MemberContacts;

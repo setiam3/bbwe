@@ -12,7 +12,7 @@ const contact = {
     },
     actions: {
         getContactList({ commit }) {
-            let request = axios.get('/profile/contact-list');
+            let request = axios.get('/profiles/profile/contact-list');
             request.then((res) => {
                 commit('setConcatList', res.data);
             });

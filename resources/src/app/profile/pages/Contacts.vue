@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts">
+  <div class="contacts animate__animated animate__fadeIn">
     <div class="adv" v-if="contact_lists.length <= 0">
       <h1 class="text-not-have-adv">You Don't have contacts <br /></h1>
       <router-link class="btn btn-adv mt-4" to="/contacts/create"

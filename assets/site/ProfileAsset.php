@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -21,6 +22,7 @@ class ProfileAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
         'css/site/profile.css'
     ];
 

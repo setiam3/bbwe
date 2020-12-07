@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeIn">
     <div class="pt-3 mb-3 d-flex justify-content-between">
       <h5>Add new contact</h5>
       <router-link to="/contacts"
@@ -93,7 +93,7 @@ export default {
         const element = this.members_id[index];
         formData.append("members_id[]",element);
       }
-      let request = axios.post("/profile/add-contact", formData);
+      let request = axios.post("/profiles/profile/add-contact", formData);
       request.then((res) => {
         _this.$router.push("/contacts");
       });

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeIn">
     <div class="pt-3 mb-3 d-flex justify-content-between">
       <h5>Contacts</h5>
     </div>
@@ -47,9 +47,6 @@
 <script>
 import mixins from "./../mixins";
 import axios from "axios";
-// import "@sweetalert2/theme-dark/dark.min.css";
-// import "@sweetalert2/theme-borderless/borderless.min.css"
-// import Swal from 'sweetalert2/src/sweetalert2.js'
 import Swal from "sweetalert2";
 import { mapState, mapActions } from "vuex";
 

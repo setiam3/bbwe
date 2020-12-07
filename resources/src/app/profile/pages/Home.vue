@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeIn">
     <div class="adv">
       <h1 class="text-not-have-adv">
         You Haven't Uploaded <br />

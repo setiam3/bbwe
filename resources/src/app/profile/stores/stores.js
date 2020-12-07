@@ -2,12 +2,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import contact from './contact';
+import jobs from './jobs';
 
 Vue.use(Vuex);
 
 const stores = new Vuex.Store({
     modules: {
-        contact: contact
+        contact: contact,
+        jobs:jobs
     },
     state: {
         user: {},
