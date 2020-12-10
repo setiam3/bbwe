@@ -19,10 +19,10 @@ class UploadImageJobForm extends Model
         ];
     }
     
-    public function upload()
+    public function upload($path_file)
     {
         if ($this->validate()) {
-            $this->imgUrl='uploads/profiles/jobs/' . $this->imageFile->baseName. '_'.md5(time()) . '.' . $this->imageFile->extension;
+            $this->imgUrl=$path_file . $this->imageFile->baseName. '_'.md5(time()) . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($this->imgUrl);
             return true;
         } else {

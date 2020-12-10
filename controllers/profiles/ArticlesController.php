@@ -4,10 +4,10 @@ namespace app\controllers\profiles;
 
 use Yii;
 use app\models\form\UploadImageJobForm;
-use app\models\MemberJobs as MemberJobsModel;
+use app\models\MemberArticles as MemberArticlesModel;
 use yii\web\UploadedFile;
 
-class JobsController extends \yii\web\Controller
+class ArticlesController extends \yii\web\Controller
 {
 
     protected $user;
@@ -23,7 +23,7 @@ class JobsController extends \yii\web\Controller
     public function actionIndex()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return ['code' => 200, 'data' => MemberJobsModel::find()->auth()->all()];
+        return ['code' => 200, 'data' => MemberArticlesModel::find()->auth()->all()];
     }
 
     public function actionCreate()
@@ -32,20 +32,19 @@ class JobsController extends \yii\web\Controller
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $modelJob = MemberJobsModel::find()->id($request->post('id'))->one() ?? new MemberJobsModel();
+        $modelJob = MemberArticlesModel::find()->id($request->post('id'))->one() ?? new MemberArticlesModel();
         $modelJob->created_by = $this->user->id;
         $upload = new UploadImageJobForm();
         $upload->imageFile = UploadedFile::getInstance($upload, 'imageFile');
 
         if ($upload->imageFile) {
-            if ($upload->upload('uploads/profiles/jobs/')) {
+            if ($upload->upload('uploads/profiles/articles/')) {
                 $modelJob->thumbnail = $upload->imgUrl;
             }
         }
 
-        $modelJob->job_name = $request->post('job_name');
-        $modelJob->job_description = $request->post('job_description');
-        $modelJob->job_requirement = $request->post('job_requirement');
+        $modelJob->article_title = $request->post('article_title');
+        $modelJob->content_article = $request->post('content_article');
         if ($modelJob->save()) {
             return ['code' => 200, 'message' => 'success'];
         }
@@ -57,7 +56,7 @@ class JobsController extends \yii\web\Controller
     {
         $request = \Yii::$app->request;
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $member = MemberJobsModel::find()->where(['id' => $request->post('id')])->one();
+        $member = MemberArticlesModel::find()->where(['id' => $request->post('id')])->one();
         if ($member->delete()) {
             return [
                 'status' => 'success',

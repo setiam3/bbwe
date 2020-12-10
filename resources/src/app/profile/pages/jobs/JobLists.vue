@@ -1,36 +1,45 @@
 <template>
   <div class="animate__animated animate__fadeIn">
-    <div class="pt-3 mb-3 d-flex justify-content-between">
-      <h5>Contacts</h5>
-    </div>
     <div>
       <ul class="p-0 m-0">
         <li
           class="d-flex justify-content-between contact_list mb-4 p-2"
           style="list-style: none"
-          v-for="contact in contacts"
-          v-bind:key="contact.id"
+          v-for="data_list in lists"
+          v-bind:key="data_list.id"
         >
           <div class="d-flex">
             <div class="w-25-">
               <img
-                class="rounded-circle"
-                :src="`/${contact.member.photo}`"
+                width="150"
+                class="img-fluid"
+                :src="`/${data_list.thumbnail}`"
                 alt=""
               />
             </div>
             <div class="w-75- pl-3">
               <h6 class="p-0 m-0">
-                <b>{{ contact.member.name }} ({{ contact.member.email }})</b>
+                <b>{{ data_list.job_name }}</b>
               </h6>
-              <h6 class="p-0 m-0">{{ contact.member.profession }}</h6>
-              <h6>
-                Skill: <b>{{ contact.member.skill }}</b>
+              <h6 class="p-0 m-0">
+                Description: {{ data_list.job_description }}
               </h6>
+              <h6>Requirement: {{ data_list.job_requirement }}</h6>
             </div>
           </div>
           <div>
-            <i @click="removeContact(contact.id)" style="cursor: pointer">
+            <i
+              @click="update(data_list.id)"
+              style="cursor: pointer"
+            >
+              <span
+                style="color: #e91e63; font-size: 20px"
+                class="iconify"
+                data-icon="bi:pencil"
+                data-inline="false"
+              ></span>
+            </i>
+            <i @click="removeContact(data_list.id)" style="cursor: pointer">
               <span
                 style="color: #e91e63; font-size: 20px"
                 class="iconify"
@@ -45,16 +54,33 @@
   </div>
 </template>
 <script>
-import mixins from "./../mixins";
+import mixins from "./../../mixins";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { mapState, mapActions } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const {
+  mapState,
+  mapActions,
+  mapGetters,
+  mapMutations,
+} = createNamespacedHelpers("jobs");
 
 export default {
   mixins: mixins,
-  props: ["contacts"],
+  props: ["lists"],
+  computed:{
+    ...mapGetters(['getDetail']),
+    ...mapState(['job'])
+  },
   methods: {
-    ...mapActions("contact", ["getContactList"]),
+    ...mapMutations(["setJob"]),
+    ...mapActions(['getLists']),
+    update(id) {
+      this.setJob(this.getDetail(id));
+      if(this.job){
+        this.$router.push(`/jobs/update`);
+      }
+    },
     removeContact(id) {
       let _this = this;
       Swal.fire({
@@ -70,10 +96,10 @@ export default {
           let formData = new FormData();
           formData.append("_csrf", window.csrf);
           formData.append("id", id);
-          let request = axios.post(`/profiles/profile/delete-contact`, formData);
+          let request = axios.post(`/profiles/jobs/delete`, formData);
           request.then((res) => {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            _this.getContactList();
+            _this.getLists();
           });
         }
       });

@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $article_title
  * @property string|null $content_article
  * @property string|null $thumbnail
+ * @property string|null $slug
  * @property string|null $created_at
  * @property string|null $updated_at
  *
@@ -38,6 +39,7 @@ class MemberArticles extends \yii\db\ActiveRecord
             [['content_article'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['article_title', 'thumbnail'], 'string', 'max' => 200],
+            [['slug'], 'string', 'max' => 300],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Member::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -53,6 +55,7 @@ class MemberArticles extends \yii\db\ActiveRecord
             'article_title' => 'Article Title',
             'content_article' => 'Content Article',
             'thumbnail' => 'Thumbnail',
+            'slug' => 'Slug',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -61,10 +64,19 @@ class MemberArticles extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CreatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|\app\models\query\MemberQuery
      */
     public function getCreatedBy()
     {
         return $this->hasOne(Member::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return \app\models\query\MemberArticlesQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\query\MemberArticlesQuery(get_called_class());
     }
 }

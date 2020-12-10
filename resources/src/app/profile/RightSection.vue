@@ -2,8 +2,8 @@
   <div class="content_profile">
     <div class="profile-page-menu">
       <div :class="{'tools-item':true, active:checkRoute('home')}"><router-link to="/"><img src="/images/icon/post-0.png" alt="" /></router-link></div>
-      <div :class="{'tools-item':true, active:checkRoute(['articles'])}"><router-link to="/articles"><img src="/images/icon/post-1.png" alt="" /></router-link></div>
-      <div :class="{'tools-item':true, active:checkRoute(['jobs','jobs_create'])}"><router-link to="/jobs"><img src="/images/icon/post-2.png" alt="" /></router-link></div>
+      <div :class="{'tools-item':true, active:checkRoute(['articles','articles_create','articles_update'])}"><router-link to="/articles"><img src="/images/icon/post-1.png" alt="" /></router-link></div>
+      <div :class="{'tools-item':true, active:checkRoute(['jobs','jobs_create','jobs_update'])}"><router-link to="/jobs"><img src="/images/icon/post-2.png" alt="" /></router-link></div>
       <div :class="{'tools-item':true, active:checkRoute(['contacts','contacts_create'])}"><router-link to="/contacts"><img src="/images/icon/post-3.png" alt="" /></router-link></div>
       <div :class="{'tools-item':true, active:checkRoute(['home3'])}"><router-link to="/"><img src="/images/icon/post-4.png" alt="" /></router-link></div>
       <div :class="{'tools-item':true, active:checkRoute(['home3'])}"><a href="/chatroom"><img src="/images/icon/post-5.png" alt="" /></a></div>
@@ -25,10 +25,15 @@ import Contacts from "./pages/Contacts";
 import ContactCreate from "./pages/ContactCreate";
 
 import Advertisement from "./pages/Advertisement";
-import Jobs from "./pages/Jobs";
-import JobsCreate from "./pages/JobsCreate";
 
-import Articles from './pages/Articles';
+
+import Jobs from "./pages/jobs/Jobs";
+import JobsCreate from "./pages/jobs/JobsCreate";
+import JobsUpdate from "./pages/jobs/JobsUpdate";
+
+import Articles from './pages/articles/Articles';
+import ArticlesCreate from './pages/articles/ArticlesCreate';
+import ArticlesUpdate from './pages/articles/ArticlesUpdate';
 
 const routes = [
   {
@@ -40,6 +45,16 @@ const routes = [
     path: "/articles",
     component: Articles,
     name: "articles",
+  },
+  {
+    path: "/articles/create",
+    component: ArticlesCreate,
+    name: "articles_create",
+  },
+  {
+    path: "/articles/update",
+    component: ArticlesUpdate,
+    name: "articles_update",
   },
   {
     path: "/contacts",
@@ -65,6 +80,11 @@ const routes = [
     path: "/jobs/create",
     component: JobsCreate,
     name: "jobs_create",
+  },
+  {
+    path: "/jobs/update",
+    component: JobsUpdate,
+    name: "jobs_update",
   },
 ];
 

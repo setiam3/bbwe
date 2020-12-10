@@ -4,14 +4,14 @@ const jobs = {
     namespaced: true,
     state: () => ({
         lists: [],
-        job:{}
+        article:{}
     }),
     mutations: {
         setLists(state, data) {
             state.lists = data;
         },
-        setJob(state,data){
-            state.job=data;
+        setArticle(state,data){
+            state.article=data;
         }
     },
     getters:{
@@ -21,7 +21,7 @@ const jobs = {
     },
     actions: {
         getLists({ commit }) {
-            let request = axios.get('/profiles/jobs');
+            let request = axios.get('/profiles/articles');
             request.then((res) => {
                 if (res.data.code == 200) {
                     commit('setLists', res.data.data);

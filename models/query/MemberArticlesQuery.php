@@ -2,14 +2,12 @@
 
 namespace app\models\query;
 
-use Yii;
-
 /**
- * This is the ActiveQuery class for [[\app\database\MemberJobs]].
+ * This is the ActiveQuery class for [[\app\database\MemberArticles]].
  *
- * @see \app\database\MemberJobs
+ * @see \app\database\MemberArticles
  */
-class MemberJobsQuery extends \yii\db\ActiveQuery
+class MemberArticlesQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -18,7 +16,7 @@ class MemberJobsQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \app\database\MemberJobs[]|array
+     * @return \app\database\MemberArticles[]|array
      */
     public function all($db = null)
     {
@@ -27,7 +25,7 @@ class MemberJobsQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \app\database\MemberJobs|array|null
+     * @return \app\database\MemberArticles|array|null
      */
     public function one($db = null)
     {
@@ -36,7 +34,7 @@ class MemberJobsQuery extends \yii\db\ActiveQuery
 
     public function auth()
     {
-        $user = Yii::$app->user->identity;
+        $user = \Yii::$app->user->identity;
         return $this->where(['created_by' => $user->id]);
     }
 
