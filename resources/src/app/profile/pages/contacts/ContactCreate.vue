@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <ul class="p-0">
           <li
-            v-for="member in members.filter((val)=>val.id !== user.id)"
+            v-for="member in members.filter((val) => val.id !== user.id)"
             v-bind:key="member.id"
             style="list-style: none"
             class="p-0 m-0 d-flex align-items-center mb-3"
@@ -53,8 +53,9 @@
   </div>
 </template>
 <script>
-import mixins from "./../mixins";
-import { mapState, mapActions } from "vuex";
+import mixins from "./../../mixins";
+import { createNamespacedHelpers, mapState as mapStateGlobal } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("contact");
 import axios from "axios";
 
 export default {
@@ -65,15 +66,16 @@ export default {
     };
   },
   computed: {
+    ...mapStateGlobal({
+      user: (state) => state.user,
+    }),
     ...mapState({
-      user:(state)=>state.user,
       members: (state) => state.members,
-      contact_lists: (state) => state.contact.contact_lists,
+      contact_lists: (state) => state.contact_lists,
     }),
   },
   methods: {
-    ...mapActions(["getMembers"]),
-    ...mapActions("contact", ["getContactList"]),
+    ...mapActions(["getMembers","getContactList"]),
     checkContact(e) {
       let value = e.target.value;
       let checked = e.target.checked;
@@ -88,12 +90,12 @@ export default {
       var _this = this;
       let formData = new FormData();
       formData.append("_csrf", window.csrf);
-      
+
       for (let index = 0; index < this.members_id.length; index++) {
         const element = this.members_id[index];
-        formData.append("members_id[]",element);
+        formData.append("members_id[]", element);
       }
-      let request = axios.post("/profiles/profile/add-contact", formData);
+      let request = axios.post("/profiles/contacts/create", formData);
       request.then((res) => {
         _this.$router.push("/contacts");
       });

@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import mixins from "./../mixins";
+import mixins from "./../../mixins";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("contact");
 import ContactLists from "./ContactLists";

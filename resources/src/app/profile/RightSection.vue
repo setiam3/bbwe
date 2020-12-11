@@ -21,8 +21,8 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Home from "./pages/Home";
 
-import Contacts from "./pages/Contacts";
-import ContactCreate from "./pages/ContactCreate";
+import Contacts from "./pages/contacts/Contacts";
+import ContactCreate from "./pages/contacts/ContactCreate";
 
 import Advertisement from "./pages/Advertisement";
 

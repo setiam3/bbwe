@@ -45,16 +45,17 @@
   </div>
 </template>
 <script>
-import mixins from "./../mixins";
+import mixins from "./../../mixins";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { mapState, mapActions } from "vuex";
+import { createNamespacedHelpers, mapState as mapStateGlobal } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("contact");
 
 export default {
   mixins: mixins,
   props: ["contacts"],
   methods: {
-    ...mapActions("contact", ["getContactList"]),
+    ...mapActions(['getContactList']),
     removeContact(id) {
       let _this = this;
       Swal.fire({
