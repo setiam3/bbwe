@@ -7,8 +7,8 @@
       <div :class="{'tools-item':true, active:checkRoute(['contacts','contacts_create'])}"><router-link to="/contacts"><img src="/images/icon/post-3.png" alt="" /></router-link></div>
       <div :class="{'tools-item':true, active:checkRoute(['home3'])}"><router-link to="/"><img src="/images/icon/post-4.png" alt="" /></router-link></div>
       <div :class="{'tools-item':true, active:checkRoute(['home3'])}"><a href="/chatroom"><img src="/images/icon/post-5.png" alt="" /></a></div>
-      <div :class="{'tools-item':true, active:checkRoute(['home3'])}"><router-link to="/"><img src="/images/icon/post-6.png" alt="" /></router-link></div>
-      <div :class="{'tools-item':true, active:checkRoute(['advertisement'])}"><router-link to="/advertisement"><img src="/images/icon/post-7.png" alt="" /></router-link></div>
+      <div :class="{'tools-item':true, active:checkRoute(['advertisement_active'])}"><router-link to="/advertisement/active"><img src="/images/icon/post-6.png" alt="" /></router-link></div>
+      <div :class="{'tools-item':true, active:checkRoute(['advertisement','advertisement_create','advertisement_update'])}"><router-link to="/advertisement"><img src="/images/icon/post-7.png" alt="" /></router-link></div>
     </div>
     <div class="content-profile-body">
       <router-view></router-view>
@@ -24,7 +24,10 @@ import Home from "./pages/Home";
 import Contacts from "./pages/contacts/Contacts";
 import ContactCreate from "./pages/contacts/ContactCreate";
 
-import Advertisement from "./pages/Advertisement";
+import Ads from "./pages/advertisement/Ads";
+import AdsCreate from "./pages/advertisement/AdsCreate";
+import AdsUpdate from "./pages/advertisement/AdsUpdate";
+import AdsActive from "./pages/advertisement/AdsActive";
 
 
 import Jobs from "./pages/jobs/Jobs";
@@ -68,8 +71,23 @@ const routes = [
   },
   {
     path: "/advertisement",
-    component: Advertisement,
+    component: Ads,
     name: "advertisement",
+  },
+   {
+    path: "/advertisement/create",
+    component: AdsCreate,
+    name: "advertisement_create",
+  },
+  {
+    path: "/advertisement/update",
+    component: AdsUpdate,
+    name: "advertisement_update",
+  },
+  {
+    path: "/advertisement/active",
+    component: AdsActive,
+    name: "advertisement_active",
   },
   {
     path: "/jobs",

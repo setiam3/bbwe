@@ -4,6 +4,7 @@ import axios from 'axios';
 import contact from './contact';
 import jobs from './jobs';
 import articles from './articles';
+import ads from './ads';
 
 Vue.use(Vuex);
 
@@ -11,7 +12,8 @@ const stores = new Vuex.Store({
     modules: {
         contact: contact,
         jobs: jobs,
-        articles: articles
+        articles: articles,
+        ads: ads
     },
     state: {
         user: {},
