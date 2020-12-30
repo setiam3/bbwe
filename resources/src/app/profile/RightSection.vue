@@ -41,7 +41,7 @@ import ArticlesUpdate from './pages/articles/ArticlesUpdate';
 const routes = [
   {
     path: "/",
-    component: Home,
+    component: AdsActive,
     name: "home",
   },
   {
